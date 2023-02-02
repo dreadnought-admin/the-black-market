@@ -24,7 +24,7 @@ r1 = Record.create(genre_id: c3.id,
     genre: c3, 
     release_date: "March 11, 1985", 
     release_description: "First and Last and Always is the debut studio album by English gothic rock band the Sisters of Mercy. It was released on 11 March 1985 through the band's self-financed Merciful Release label.",
-    record_labels: "Elektra Records", 
+    record_labels: "Elektra Records",  
     price: 1000.00, 
     in_stock: true)
 
@@ -39,6 +39,7 @@ r2 = Record.create(genre_id: c3.id,
     release_date: "October 22, 1982", 
     release_description: "The Sky's Gone Out is the third studio album by English gothic rock band Bauhaus, released in 1982 by record label Beggars Banquet.",
     record_labels: "Beggas Banquet", 
+    spotify_link: "http://testinglink.com", 
     price: 2000.00, 
     in_stock: true)
 

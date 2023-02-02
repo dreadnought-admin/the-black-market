@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
     t.string "release_date"
     t.string "release_description"
     t.string "record_labels"
+    t.string "spotify_link"
     t.float "price"
     t.boolean "in_stock"
     t.datetime "created_at", null: false
