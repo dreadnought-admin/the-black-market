@@ -8,6 +8,12 @@ class Record < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_and_belongs_to_many :cart
 
+    validates :album_name, presence: true
+    validates :artist_name, presence: true
+    validates :album_cover, presence: true
+    validates :condition, presence: true
+    validates :price, presence: true
+
     aasm do
         state :unread, :initial => true 
 
