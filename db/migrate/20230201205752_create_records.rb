@@ -10,6 +10,8 @@ class CreateRecords < ActiveRecord::Migration[7.0]
       t.string :release_date
       t.string :release_description
       t.string :record_labels
+      t.float :price
+      t.in_stock :boolean
 
       t.timestamps
     end

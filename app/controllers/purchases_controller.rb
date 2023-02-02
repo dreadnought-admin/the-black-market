@@ -9,4 +9,6 @@ class PurchasesController < ApplicationController
         @purchase = Purchase.find(params[:id])
         @purchase.update!(status: params[:status])
         render json: @purchase, status: :accepted
+    end 
+    
 end
