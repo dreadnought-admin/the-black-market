@@ -3,8 +3,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       t.string :username
       t.string :bio
-      t.string :city
-      t.string :state
+      t.string :country
       t.string :instagram_handle
       t.string :twitter_handle
       t.string :avatar

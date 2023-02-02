@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :records
 
-  resources :users, only: [:create, :destroy]
+  resources :users
 
   get 'sessions/create'
   get 'sessions/destroy'

@@ -100,8 +100,7 @@ puts "Summoning users..."
 
 u1 = User.create(username: "Peter", 
     bio: "The baddest motherfucker", 
-    city: "Brooklyn", 
-    state: "New York", 
+    country: "USA", 
     instagram_handle: nil, 
     twitter_handle: nil, 
     avatar: "http://aslongasitsblack.com/wp-content/uploads/2019/07/peter-steele-1-e1567446464507-988x1024.jpg", 
@@ -110,8 +109,7 @@ u1 = User.create(username: "Peter",
 
 u2 = User.create(username: "Sioux", 
     bio: "Dark queen", 
-    city: "London", 
-    state: "Somewhere in England", 
+    country: "UK",
     instagram_handle: nil, 
     twitter_handle: nil, 
     avatar: "https://consequence.net/wp-content/uploads/2015/08/screen-shot-2015-08-31-at-11-40-25-am.png", 
@@ -120,12 +118,22 @@ u2 = User.create(username: "Sioux",
 
 u3 = User.create(username: "Rob", 
     bio: "It's Friday, I'm in love", 
-    city: "Maybe London?", 
-    state: "Maybe England?", 
+    country: "UK",
     instagram_handle: nil, 
     twitter_handle: nil, 
     avatar: "https://www.nme.com/wp-content/uploads/2023/01/cure_paul_cox_3.jpg", 
     password_digest: "p0rn0graphy", 
     email: Faker::Internet.email)
+
+    10.times do
+        User.create!(username: Faker::Internet.username(specifier: 5..15), 
+        bio: Faker::Lorem.paragraph(sentence_count: 3, supplemental: false, random_sentences_to_add: 4),
+        country: Faker::Address.country,
+        instagram_handle: nil,
+        twitter_handle: nil,
+        avatar: Faker::LoremFlickr.pixelated_image,
+        password_digest: Faker::Internet.password,
+        email: Faker::Internet.email)
+    end 
 
 puts "Users summoned!"

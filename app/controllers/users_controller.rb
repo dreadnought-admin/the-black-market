@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorized_user, only: [:create]
+    wrap_parameters format: []
+
+    def index
+      render json: User.all
+    end 
   
     # /me route
     def show
-      render json: @current_user, serializer: UserWithCommentsAndPurchasesSerializer
+      render json: @current_user, serializer: UserWithCommentsAndPurchasesSerializer,
+      status: :ok
     end
   
     # /signup route

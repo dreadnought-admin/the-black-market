@@ -13,6 +13,6 @@ class User < ApplicationRecord
     has_many :purchases, dependent: :destroy
 
     has_secure_password
-    validates :username, presence: true, length: { maximum: 10 }, uniqueness: true
+    validates :username, presence: true, length: { maximum: 20 }, uniqueness: true
     validates :email, presence: :true, uniqueness: true
 end
