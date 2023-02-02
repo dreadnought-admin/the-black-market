@@ -1,21 +1,26 @@
 class Record < ApplicationRecord
+
     include AASM
+    audited
+
     belongs_to :genre
+
     has_many :comments, dependent: :destroy
-    has_many_and_belongs_to_many :cart
+    has_and_belongs_to_many :cart
 
-    aasm_initial_state :unread
-    acts_as_audited :only => :state
+    aasm do
+        state :unread, :initial => true 
 
-    aasm_state :available
-    aasm_state :purchased
+        state :available
+        state :purchased
 
-    aasm_event :returned_by_buyer do
-        transitions :to => :available, :from => [:purchased]
-    end 
+        event :returned_by_buyer do
+            transitions from: :purchased, to: :available
+        end 
 
-    aasm_event :purchsed_by_customer do
-        transitions :to => :purchased, :from => [:available]
+        event :purchsed_by_customer do
+            transitions from: :available, to: :purchased
+        end 
     end 
 
     def purchase_history
@@ -25,6 +30,7 @@ class Record < ApplicationRecord
             id = item.auditable_id
             if purchased_at = outstanding_purchases.keys.delete(id)
                 history << {
+
                     :record_id => id,
                     :purchase_start => purchased_at,
                     :purchase_end => item.created_at
@@ -33,7 +39,7 @@ class Record < ApplicationRecord
                 outstanding_purchases[:id] = item.created_at
             end 
         end
-        history << outstanding_purchases.collect{|key, value|} {:record_id => key,
-        :purchase_start => value} 
-    end   
+        history << oustanding_rentals.collect{|key, value| {:record_id => key,  
+            :purchase_start => value}}
+    end
 end
