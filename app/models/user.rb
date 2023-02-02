@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
     audited
+    
     has_many :carts, dependent: :destroy
     has_many :records, through: :carts
     has_associated_audits
