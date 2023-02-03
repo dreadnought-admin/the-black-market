@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
 
   create_table "records", force: :cascade do |t|
     t.bigint "genre_id", null: false
+    t.bigint "user_id", null: false
     t.string "album_name"
     t.string "artist_name"
     t.string "album_cover"
@@ -93,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
     t.datetime "updated_at", null: false
     t.string "aasm_state"
     t.index ["genre_id"], name: "index_records_on_genre_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -125,5 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
   add_foreign_key "comments", "users"
   add_foreign_key "purchases", "users"
   add_foreign_key "records", "genres"
+  add_foreign_key "records", "users"
   add_foreign_key "watches", "users"
 end

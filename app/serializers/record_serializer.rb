@@ -4,4 +4,5 @@ class RecordSerializer < ActiveModel::Serializer
   :release_description, :record_labels, :spotify_link
   
   has_one :genre
+  has_one :user
 end

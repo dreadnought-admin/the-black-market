@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-function App() {
+const App = () => {
+
+  const [records, setRecords] = useState([]);
+  const [currentUser, setCurrentUser] = useState(false);
+  const [watches, setWatches] = useState([]);
+
+  const [recordId, setRecordId] = useState(null);
+
+  useEffect(() => {
+    fetch("/authorized_user").then((r) => { 
+      if (r.ok) {
+        r.json().then((user) => {
+          updateUser(user)
+        });
+      }
+    });
+  }, []);
+
+
+  useEffect(() => {
+    fetchRecords();
+  }, [])
+
+  const fetchRecords = () => {
+    fetch("/records")
+    .then((r) => r.json())
+    .then((records) => {
+      setRecords(records);
+    })
+  }
+
+  console.log(records)
+
+  // delete
+
+  const handleDeleteRecord = (id) => {
+    const newRecordList = records.filter((record) => 
+    record.id !== id )
+    setRecords(newRecordList)
+  }
+
+
+
+  const updateUser = (user) => setCurrentUser(user);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1> hello, bitch</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
