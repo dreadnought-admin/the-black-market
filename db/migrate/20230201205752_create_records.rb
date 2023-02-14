@@ -12,7 +12,7 @@ class CreateRecords < ActiveRecord::Migration[7.0]
       t.string :release_description
       t.string :record_labels
       t.string :spotify_link, default: nil
-      t.float :price
+      t.integer :price
       t.boolean :in_stock
 
       t.timestamps

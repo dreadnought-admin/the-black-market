@@ -5,7 +5,7 @@ class Record < ApplicationRecord
 
     belongs_to :genre
     belongs_to :user
-
+    
     has_many :comments, dependent: :destroy
     has_and_belongs_to_many :cart
 

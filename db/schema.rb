@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
     t.string "release_description"
     t.string "record_labels"
     t.string "spotify_link"
-    t.float "price"
+    t.integer "price"
     t.boolean "in_stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -106,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_201315) do
     t.string "avatar"
     t.string "password_digest"
     t.string "email"
+    t.string "paypal_handle"
     t.string "role", default: "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

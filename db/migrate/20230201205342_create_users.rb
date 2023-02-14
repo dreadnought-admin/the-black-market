@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :avatar
       t.string :password_digest
       t.string :email
+      t.string :paypal_handle
       t.string :role, default: "user"
 
       t.timestamps

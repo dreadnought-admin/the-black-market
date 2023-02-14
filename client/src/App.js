@@ -14,15 +14,25 @@ import Checkout from './components/Checkout'
 import RecordList from './components/RecordList'
 import Search from './components/Search'
 import RecordDetail from './components/RecordDetail'
+import FeaturedRecords from './components/FeaturedRecords'
+import Cart from './components/Cart'
+// import CartItem from './components/CartItem.js'
+import EditSelfRecord from './components/EditSelfRecord'
+import Watches from './components/Watches'
 
 
 const App = () => {
 
   const [records, setRecords] = useState([]);
+  const [recordDetail, setRecordDetail] = useState([]);
   const [currentUser, setCurrentUser] = useState(false);
   const [watches, setWatches] = useState([]);
 
   const [recordId, setRecordId] = useState(null);
+
+  const [cartNumber, setCartNumber] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     fetch("/authorized_user").then((r) => { 
@@ -33,7 +43,6 @@ const App = () => {
       }
     });
   }, []);
-
 
   useEffect(() => {
     fetchRecords();
@@ -46,8 +55,6 @@ const App = () => {
       setRecords(records);
     })
   }
-
-  console.log(records)
 
   // delete
 
@@ -65,6 +72,10 @@ const App = () => {
   // }
 
   // patch
+
+  const EditUserProfile = () => {
+    console.log("It's a function")
+  }
 
   const onUpdateSelfRecord = (updatedRecord) => {
     const updatedRecords = records.map((uneditedRecord) => {
@@ -98,14 +109,109 @@ const App = () => {
   const searchQuery = records.filter(record => {
     return(
       (record.album_name).toLowerCase().includes(search.toLowerCase()) ||
-      (record.artist_name).toLowerCase().includes(search.toLowerCase()) ||
-      (record.genre.genre).toLowerCase().includes(search.toLowerCase())
+      (record.artist_name).toLowerCase().includes(search.toLowerCase())
     )
   })
 
   return (
     <div>
-      <h1> hello, bitch. im the app component </h1>
+      <Router>
+
+        <Navbar updateUser={updateUser} currentUser={currentUser} />
+
+        <Routes>
+
+          <Route
+          exact path = "/signup"
+          element = {<Signup updateUser={updateUser}/>}
+          />
+
+          <Route
+          exact path = "/login"
+          element = {<Login updateUser={updateUser} />}
+          /> 
+
+          <Route
+          exact path = "/about"
+          element = {<About />}
+          />
+
+          <Route
+          exact path = "/cart"
+          element = {<Cart cart={cart} 
+          />}
+          />
+
+          <Route
+          exact path = "/checkout"
+          element = {<Checkout cart={cart} 
+          cartTotal={cartTotal} 
+          cartNumber={cartNumber} 
+          currentUser={currentUser} 
+          setCart={setCart} 
+          setCartNumber={setCartNumber} 
+          setCartTotal={setCartTotal}/>}
+          />
+
+          <Route
+          exact path = "/"
+          element = {<>
+          <FeaturedRecords records={records} setRecords={setRecords}/>
+          <Home records={records} /></>}
+          />
+          
+          <Route
+          exact path = "/records"
+          element = {<>
+          <Search search={search} setSearch={setSearch} />
+          <RecordList records={searchQuery}/></>}
+          />
+
+          <Route
+          exact path = "/users/:id/edit"
+          element = {<EditUserProfile />}
+          />
+
+          <Route
+          exact path = "/records/:id/edit"
+          element = {<EditSelfRecord />}
+          />
+
+          <Route
+          exact path = "/records/:id"
+          element = {<RecordDetail 
+          currentUser={currentUser}
+          record={recordDetail}
+          setRecordDetail={setRecordDetail}/>}
+          />
+
+          {currentUser && (
+            <Route 
+            exact path = "/user_favorites"
+            element = {<Watches currentUser={currentUser} />}
+            />
+          )}
+
+          {currentUser && (
+            <Route
+            exact path = "/new_sale"
+            element = {<NewRecordForm 
+              records={records}
+              setRecords={setRecords}
+              currentUser={currentUser} />}
+            /> 
+          )}
+
+          {currentUser && (
+            <Route
+            exact path = "/profile"
+            element = {<UserProfile currentUser={currentUser} />}
+            /> 
+          )}
+
+        </Routes>
+          <Footer />
+      </Router>
     </div>
   )
 }
