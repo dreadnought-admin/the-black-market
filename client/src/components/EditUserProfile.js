@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-const EditUserProfile = ({ currentUser, user, setCurrentUser }) => {
+const EditUserProfile = ({ setCurrentUser }) => {
 
   const initialProfile = {
     username: "",
@@ -16,7 +16,7 @@ const EditUserProfile = ({ currentUser, user, setCurrentUser }) => {
 
   const [formData, setFormData] = useState(initialProfile)
 
-  const { username, bio, country, instagram_handle, twitter_handle, avatar, email } = 
+  const { username, bio, country, instagram_handle, twitter_handle, paypal_handle, avatar, email, password } = 
   formData
 
   const { id } = useParams();
@@ -38,10 +38,13 @@ const EditUserProfile = ({ currentUser, user, setCurrentUser }) => {
     const updatedProfile = {
       username: formData.username,
       bio: formData.bio,
+      country: formData.country,
       instagram_handle: formData.instagram,
       twitter_handle: formData.twitter_handle,
+      paypal_handle: formData.paypal_handle,
       avatar: formData.avatar,
-      email: formData.email
+      email: formData.email,
+      password: formData.password
     }
     fetch(`/users/${id}`,
     {
@@ -49,18 +52,119 @@ const EditUserProfile = ({ currentUser, user, setCurrentUser }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedPoem)
+      body: JSON.stringify(updatedProfile)
     })
     .then((r) => r.json())
     .then((updatedUser) => {
-      onUpdateUser(updatedUser);
+      setCurrentUser(updatedUser);
+      alert("Your profile has been updated!")
       navigate("/profile")
     })
   }
 
   return (
     <div>
-      
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <h3>Edit profile</h3>
+      </form>
+      <fieldset>
+        <legend>
+          What do you want to change?
+        </legend>
+        <ul>
+          <li>
+            <label htmlFor='username'>Username</label>
+            <input
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='bio'>Bio</label>
+            <input
+            type="textarea"
+            id="bio"
+            name="bio"
+            value={bio}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='country'>country</label>
+            <input
+            type="text"
+            id="country"
+            name="country"
+            value={country}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='email'>Email</label>
+            <input
+            type="text"
+            id="email"
+            name="email"
+            value={email}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='paypal_handle'>Paypal</label>
+            <input
+            type="text"
+            id="paypal_handle"
+            name="paypal_handle"
+            value={paypal_handle}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='twitter_handle'>Twitter</label>
+            <input
+            type="text"
+            id="twitter_handle"
+            name="twitter_handle"
+            value={twitter_handle}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='instagram_handle'>Instagram</label>
+            <input
+            type="text"
+            id="instagram_handle"
+            name="instagram_handle"
+            value={instagram_handle}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='avatar'>Avatar</label>
+            <input
+            type="text"
+            id="avatar"
+            name="avatar"
+            value={avatar}
+            onChange={handleChange} 
+            />
+          </li>
+          <li>
+            <label htmlFor='password'>Password</label>
+            <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={handleChange} 
+            />
+          </li>
+        </ul>
+      </fieldset>
+      <button type="submit" onClick={handleSubmit}>Submit Changes</button>
     </div>
   )
 }

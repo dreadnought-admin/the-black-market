@@ -6,9 +6,9 @@ class UsersController < ApplicationController
       render json: User.all
     end 
   
-    # /me route
     def show
-      render json: @current_user, serializer: UserWithCommentsAndPurchasesSerializer,
+      @current_user = User.find_by(id: session[:user_id])
+      render json: @current_user,
       status: :ok
     end
   
@@ -18,11 +18,21 @@ class UsersController < ApplicationController
         session[:user_id] = user.id 
         render json: user, status: :created
     end
+
+    def update
+      @current_user = User.find_by(id: session[:user_id])
+      if @current_user.update(user_params)
+          render json: @current_user
+      else 
+          render json: @current_user.errors, status: :unprocessable_entity
+      end 
+  end 
+
   
-    def update_profile
-        @current_user.update!(user_params)
-        render json: @current_user
-    end
+    # def update_profile
+    #     @current_user.update!(user_params)
+    #     render json: @current_user
+    # end
   
     def destroy
       @current_user.destroy
@@ -33,7 +43,8 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-      params.permit(:username, :email, :password, :twitter_handle, :instagram_handle, :paypal)
+      params.permit(:username, :bio, :country, :email, :password, :twitter_handle, :instagram_handle, :paypal_handle, :avatar)
   end 
   
 end
+

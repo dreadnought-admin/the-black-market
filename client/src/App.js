@@ -17,6 +17,7 @@ import RecordDetail from './components/RecordDetail'
 import FeaturedRecords from './components/FeaturedRecords'
 import Cart from './components/Cart'
 import EditSelfRecord from './components/EditSelfRecord'
+import EditUserProfile from './components/EditUserProfile'
 // import Watches from './components/Watches'
 
 
@@ -57,24 +58,12 @@ const App = () => {
 
   // delete
 
-  // const handleDeleteRecord = (id) => {
-  //   if currentUser.id = record.user.id => { 
-  //   fetch(`/records/${id}`,
-  //   {
-  //     method: "DELETE",
-  //   }
-  //   )
-  //   .then((r) => r.json())
-  //   .then(() => {
-  //     setRecords((records) => records.filter((record) => record.id !== id ))
-  //   }}
-  // }
-
+const handleDeleteRecord = (deleted) => {
+ const updatedRecords = records.filter((record) => record.id !== deleted.id)
+ setRecords(updatedRecords)
+}
   // patch
 
-  const EditUserProfile = () => {
-    console.log("It's a function")
-  }
 
   const onUpdateSelfRecord = (updatedRecord) => {
     const updatedRecords = records.map((uneditedRecord) => {
@@ -163,7 +152,9 @@ const App = () => {
           exact path = "/records"
           element = {<>
           <Search search={search} setSearch={setSearch} />
-          <RecordList records={searchQuery}/></>}
+          <RecordList 
+          records={searchQuery}
+          handleDeleteRecord={handleDeleteRecord}/></>}
           />
 
           <Route
@@ -176,7 +167,7 @@ const App = () => {
 
           <Route
           exact path = "/records/:id/edit"
-          element = {<EditSelfRecord/>}
+          element = {<EditSelfRecord onUpdateSelfRecord={onUpdateSelfRecord}/>}
           />
 
           <Route
@@ -184,7 +175,8 @@ const App = () => {
           element = {<RecordDetail 
           currentUser={currentUser}
           record={recordDetail}
-          setRecordDetail={setRecordDetail}/>}
+          setRecordDetail={setRecordDetail}
+          handleDeleteRecord={handleDeleteRecord}/>}
           />
 
           {/* {currentUser && (
@@ -207,7 +199,8 @@ const App = () => {
           {currentUser && (
             <Route
             exact path = "/profile"
-            element = {<UserProfile currentUser={currentUser} />}
+            element = {<UserProfile 
+            currentUser={currentUser}/>}
             /> 
           )}
 

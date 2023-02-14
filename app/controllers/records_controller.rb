@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
     end 
 
     def create
-        record = Record.create!(record_params)
+        record = Record.create(record_params)
         render json: record, status: :created
     end
 
@@ -27,7 +27,7 @@ class RecordsController < ApplicationController
 
     def destroy
         record = find_record
-        record.destroy
+        record.destroy!
         head :no_content
     end 
 
@@ -50,8 +50,8 @@ class RecordsController < ApplicationController
     def record_params
         params.permit(
             :user_id, :album_name, :artist_name, :album_cover, 
-            :condition, :genre, :release_date, :release_description,
-            :record_labels, :price, :in_stock
+            :condition, :release_date, :release_description,
+            :record_labels, :price, :spotify_link
         )
     end 
 

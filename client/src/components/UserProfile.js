@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useParams, Link, useNavigate, Navigate } from 'react-router-dom'
 import RecordList from './RecordList'
-import RecordDetail from './RecordDetail'
+import { confirmAlert } from 'react-confirm-alert' 
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import EditUserProfile from './EditUserProfile'
 
 
 const UserProfile = ({ currentUser }) => {
   const [userRecords, setUserRecords] = useState([]);
+  const [user, setUser] = useState([])
 
-  const { username, 
-  email, twitter_handle, instagram_handle, paypal_handle } = 
+
+  const { id } = useParams()
+
+
+  const { username, bio,
+  email, twitter_handle, instagram_handle, paypal_handle, avatar } = 
   currentUser
 
   useEffect(() => {
@@ -30,14 +37,24 @@ const UserProfile = ({ currentUser }) => {
     });
   }, []);
 
+  useEffect(() => {
+    fetch(`/users/${id}`)
+    .then((r) => r.json())
+    .then((user) => {
+      setUser(user)
+    })
+  }, [id])
+
+
   if (!records) return <h2>Loading features...</h2>
 
-  if (!currentUser) return <h2>Loading user profile...</h2>
+  if (!user) return <h2>Loading user profile...</h2>
 
+  console.log(avatar)
 
   return (
     <div>
-      <span><h1>Welcome back, {username}</h1></span>
+      <span><h1>Welcome back, {username}</h1><img src={avatar}></img></span>
       <span><h3>Your Active Sales:</h3></span>
         <RecordList records={userRecords}/>
       <div>
@@ -47,7 +64,20 @@ const UserProfile = ({ currentUser }) => {
         Albums You Might Like
         <RecordList records={records}/> 
       </div>
-      <Link to="/edit_profile"></Link>
+      <div>
+        <fieldset>
+          <legend>About {currentUser.username}</legend>
+          <div>
+            {bio}
+          </div>
+        </fieldset>
+      </div>
+      <div>
+      {<Link to={`/users/${user.id}/edit`}>
+        <button type="button">Edit Your Profile</button>
+      </Link>}
+      </div>
+
     </div>
   )
 }

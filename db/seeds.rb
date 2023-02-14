@@ -58,7 +58,7 @@ puts "Users summoned!"
 
 puts "Creating records..."
 
-r1 = Record.create(genre_id: c3.id, 
+r1 = Record.create(
     album_name: "First and Last and Always", 
     artist_name: "Sisters of Mercy", 
     album_cover: "https://m.media-amazon.com/images/I/5170MWXHA4L._UF1000,1000_QL80_.jpg", 
@@ -68,10 +68,10 @@ r1 = Record.create(genre_id: c3.id,
     release_date: "March 11, 1985", 
     release_description: "First and Last and Always is the debut studio album by English gothic rock band the Sisters of Mercy. It was released on 11 March 1985 through the band's self-financed Merciful Release label.",
     record_labels: "Elektra Records",  
-    price: 1000.00, 
+    price: rand(1..1000), 
     in_stock: true)
 
-r2 = Record.create(genre_id: c3.id, 
+r2 = Record.create( 
     album_name: "The Sky's Gone Out", 
     artist_name: "Bauhaus", 
     album_cover: "https://i.discogs.com/o3yzAi_CocgxqKVAC8bIw8x6PeKGL1BoTPFaRKgGers/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4MjIx/MC0xNDE3NzQwNjAx/LTk1NjIuanBlZw.jpeg", 
@@ -82,10 +82,10 @@ r2 = Record.create(genre_id: c3.id,
     release_description: "The Sky's Gone Out is the third studio album by English gothic rock band Bauhaus, released in 1982 by record label Beggars Banquet.",
     record_labels: "Beggas Banquet", 
     spotify_link: "http://testinglink.com", 
-    price: 2000.00, 
+    price: rand(1..1000), 
     in_stock: true)
 
-r3 = Record.create(genre_id: c4.id, 
+r3 = Record.create(
     album_name: "Pornography", 
     artist_name: "The Cure", 
     album_cover: "https://www.udiscovermusic.com/wp-content/uploads/2016/09/Tthe-Cure-Pornography-album-cover-web-optimised-820.jpg", 
@@ -95,10 +95,10 @@ r3 = Record.create(genre_id: c4.id,
     release_date: "May 4, 1982", 
     release_description: "Pornography is the fourth studio album by English Gothic rock band The Cure, released on 3 May 1982 by Fiction Records. Preceded by the non-album single 'Charlotte Sometimes', it was the band's first album with new producer Phil Thornalley, and was recorded at RAK Studios from January to April 1982.",
     record_labels: nil, 
-    price: 1500.00, 
+    price: rand(1..1000), 
     in_stock: true)
 
-r4 = Record.create(genre_id: c1.id, 
+r4 = Record.create(
     album_name: "Floodland", 
     artist_name: "Sisters of Mercy", 
     album_cover: "http://s3.amazonaws.com/quietus_production/images/articles/10717/The_Sisters_of_Mercy_-_Floodland_1353248725.jpg", 
@@ -108,10 +108,10 @@ r4 = Record.create(genre_id: c1.id,
     release_date: "November 13, 1987", 
     release_description: "Floodland is the second studio album by English gothic rock band the Sisters of Mercy. It was released on 16 November 1987, through Merciful Release internationally and distributed by WEA, with Elektra Records handling the United States release.",
     record_labels: "Elektra Records", 
-    price: 1700.00, 
+    price: rand(1..1000), 
     in_stock: true)
 
-r5 = Record.create(genre_id: c1.id, 
+r5 = Record.create(
     album_name: "Belirdi Gece", 
     artist_name: "She Past Away", 
     album_cover: "https://fabrikarecords.com/wp-content/uploads/2020/08/FP008-FRONT-1200-768x768.png", 
@@ -125,10 +125,10 @@ r5 = Record.create(genre_id: c1.id,
     With its minimal wave attributes, “belirdi gece (musallat)” is melodramatic and awash in darkness. “ruh”—a track with an insatiable beat—progresses into an epic resolution as caner’s vocals echo and call out into the black night sky. The eeriness of “kemir beni” recalls a strange feeling of anticipation with its synthpunk beat and running synths while “bozbulanik” continues on with a sense of dread, an urgency. Belirdi gece closes out with “ice kapanis,” a proper ending to the severity of the album, akin to the cure’s signature death march à la seventeen seconds. She past away’s first full length introduced the scene to their own style of funeral dance—one full of tumultuous emotions—that was not only fun to dance to, but altered darkwave’s dna. 
     We present you the 10th anniversary limited edition of “belirdi gece”. Black on black cover design and semi black semi clear vinyl are the main features of this celebratory edition.",
     record_labels: "Fabrika Records", 
-    price: 500.00, 
+    price: rand(1..500), 
     in_stock: false)
 
-r6 = Record.create(genre_id: c3.id, 
+r6 = Record.create( 
     album_name: "Juju", 
     artist_name: "Siouxsie and the Banshees", 
     album_cover: "https://i.discogs.com/gvazKF-vrdSZYNJ1vDa1klvrRYfRJ8g0wU_f-VmbHUY/rs:fit/g:sm/q:90/h:586/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0Mjgx/Mi0xNDU5MTY1OTcx/LTY0NTcuanBlZw.jpeg", 
@@ -138,8 +138,16 @@ r6 = Record.create(genre_id: c3.id,
     release_date: "June 6, 1981", 
     release_description: "Juju is the fourth studio album by English rock band Siouxsie and the Banshees. It was recorded at Surrey Sound studio with Nigel Gray as co-producer, and was released on 19 June 1981 by record label Polydor. Two singles were released from Juju: 'Spellbound' and 'Arabian Knights'.",
     record_labels: "PVC Records", 
-    price: 3000.00, 
+    price: rand(1..500), 
     in_stock: true)
 
 puts "Records spun!"
 
+puts "Generating comments..."
+
+2.times do 
+    Comment.create!(user_id: u1.id, record_id: r1.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
+
+puts "Comments generated!"

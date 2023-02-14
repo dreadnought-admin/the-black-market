@@ -41,15 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
-  create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["record_id"], name: "index_carts_on_record_id"
-    t.index ["user_id"], name: "index_carts_on_user_id"
-  end
-
   create_table "chatrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.bigint "genre_id", null: false
     t.bigint "user_id", null: false
     t.string "album_name"
     t.string "artist_name"
@@ -99,11 +89,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
     t.string "record_labels"
     t.string "spotify_link"
     t.integer "price"
-    t.boolean "in_stock"
+    t.boolean "in_stock", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
-    t.index ["genre_id"], name: "index_records_on_genre_id"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
@@ -113,10 +102,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
     t.string "country"
     t.string "instagram_handle"
     t.string "twitter_handle"
-    t.string "avatar"
+    t.string "paypal_handle"
+    t.string "avatar", default: "https://i.pinimg.com/474x/00/f0/a3/00f0a32118159c93483154be511769ed.jpg"
     t.string "password_digest"
     t.string "email"
-    t.string "paypal_handle"
     t.string "role", default: "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -132,12 +121,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
     t.index ["watched_type", "watched_id"], name: "index_watches_on_watched"
   end
 
-  add_foreign_key "carts", "records"
-  add_foreign_key "carts", "users"
   add_foreign_key "comments", "records"
   add_foreign_key "comments", "users"
   add_foreign_key "purchases", "users"
-  add_foreign_key "records", "genres"
   add_foreign_key "records", "users"
   add_foreign_key "watches", "users"
 end

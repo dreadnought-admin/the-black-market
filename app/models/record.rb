@@ -3,11 +3,11 @@ class Record < ApplicationRecord
     include AASM
     audited
 
-    belongs_to :genre
+    #belongs_to :genre
     belongs_to :user
 
     has_many :comments, dependent: :destroy
-    has_and_belongs_to_many :cart
+    #has_and_belongs_to_many :cart, dependent: :destroy
 
     validates :album_name, presence: true
     validates :artist_name, presence: true

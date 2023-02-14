@@ -22,12 +22,17 @@ const Navbar = ({ updateUser, currentUser }) => {
   return (
     <div>
       <NavLink to="/">Home</NavLink>
+      <NavLink to="/about">About</NavLink>
       <NavLink to="/records">Records</NavLink>
+      
       {!currentUser?
         <NavLink to="/signup">Create Account</NavLink> : null}
       
       {!currentUser? 
       <NavLink to="/login">Login</NavLink> : null }
+
+      {currentUser &&(
+      <NavLink to="/new_sale">Sell a Record</NavLink>)}
       
       {currentUser&&(
         <NavLink to="/profile">Welcome back, {username}</NavLink>

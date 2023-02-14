@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     #show all comments
     def index
         @comments = Comment.all
-        render json: comments
+        render json: @comments
     end
 
     #PATCH comment

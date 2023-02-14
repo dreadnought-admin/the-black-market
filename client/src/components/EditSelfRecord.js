@@ -15,7 +15,8 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
   
   const [formData, setFormData] = useState(initialState)
   
-    const { album_name, artist_name, release_date, album_cover } = formData
+    const { album_name, artist_name, condition, release_description, 
+      release_date, album_cover, spotify_link, record_labels, price } = formData
   
     const { id } = useParams();
     const navigate = useNavigate();
@@ -38,6 +39,7 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
         artist_name: formData.artist_name,
         release_date: formData.release_date,
         album_cover: formData.album_cover
+
       }
       fetch(`/records/${id}`,
       {
@@ -64,7 +66,7 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
               </legend>
               <ul className="">
                 <li>
-                  <label className="form_header" htmlFor='album_name'>Title:</label>
+                  <label className="form_header" htmlFor='album_name'>Album Name:</label>
                   <input
                   className="input"
                   type="text"
@@ -76,11 +78,11 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
                 </li>
 
                 <li>
-                  <label className="form_header" htmlFor='artist'>Artist:</label>
+                  <label className="form_header" htmlFor='artist_name'>Artist:</label>
                   <input
                   className="input"
                   type="text"
-                  id="artist"
+                  id="artist_name"
                   name="artist_name"
                   value={artist_name}
                   onChange={handleChange}
@@ -101,12 +103,67 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
   
   
                 <li>
-                  <label className="form_header" htmlFor='cover_img'>Cover Image URL</label>
+                  <label className="form_header" htmlFor='album_cover'>album cover</label>
                   <input
                   type="text"
-                  id="cover_img"
-                  name="cover_img"
+                  id="album_cover"
+                  name="album_cover"
                   value={album_cover}
+                  onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <label className="form_header" htmlFor='condition'>condition</label>
+                  <input
+                  type="text"
+                  id="condition"
+                  name="condition"
+                  value={condition}
+                  onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <label className="form_header" htmlFor='release_description'>description</label>
+                  <input
+                  type="textarea"
+                  id="release_description"
+                  name="release_description"
+                  value={release_description}
+                  onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <label className="form_header" htmlFor='spotify_link'>spotify</label>
+                  <input
+                  type="text"
+                  id="spotify_link"
+                  name="spotify_link"
+                  value={spotify_link}
+                  onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <label className="form_header" htmlFor='record_labels'>record label</label>
+                  <input
+                  type="text"
+                  id="record_labels"
+                  name="record_labels"
+                  value={record_labels}
+                  onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <label className="form_header" htmlFor='price'>price</label>
+                  <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  value={price}
                   onChange={handleChange}
                   />
                 </li>
