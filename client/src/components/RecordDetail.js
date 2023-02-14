@@ -17,27 +17,32 @@ const RecordDetail = ({ currentUser, enterRecordEdit }) => {
   const { user, genre_id, album_name, 
   artist_name, album_cover, condition, 
   release_date, release_description, record_labels, 
-  spotify_link, price, in_stock } = record
+  spotify_link, price, in_stock, user_id } = record
 
-console.log(user)
+  
+  console.log(currentUser.id)
+
 
 if (!user) return <h2>Loading...</h2>
 
-  // useEffect(() => {
-  //   fetch(`/records/${id}`)
-  //   .then((r) => r.json())
-  //   .then((record_detail) => {
-  //     setRecordDetails(record_detail)
-  //   })
-  // }, [id])
+function checkUser() {
+  if (user.id != currentUser.id) {
+    console.log("This ain't it, chief")
+    console.log(user.id, currentUser.id)
+    return false 
+  } else {
+    console.log("This IS it, chief!")
+    return true 
+  }
+}
 
-  
+
+checkUser();
 
   const handleEditClick = () => {
     enterRecordEdit(id);
   }
 
-  console.log({price})
   // in stock will need to be a state function
 
   return (
@@ -51,8 +56,12 @@ if (!user) return <h2>Loading...</h2>
       <p>{record_labels}</p>
       <a href={spotify_link}></a>
       <p>For sale by: {user.username}</p>
-      <p>Sale Price: {price}</p>
+      <p>Sale Price: </p>
       <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>
+    </div>
+
+    <div>
+      
     </div>
     <div>
     <Link to="/records">Back to browsing</Link>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-const EditUserProfile = ({ currentUser }) => {
+const EditUserProfile = ({ currentUser, user, setCurrentUser }) => {
 
   const initialProfile = {
     username: "",
@@ -28,11 +28,6 @@ const EditUserProfile = ({ currentUser }) => {
     .then((user) => setFormData(user))
   }, [id])
 
-  // const allowEditUser = () => {
-  //   if currentUser.id == `${$}`
-  //     return 
-  // }
-
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(formdata => ({ ...formData, [name]: value }))
@@ -40,15 +35,15 @@ const EditUserProfile = ({ currentUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedPoem = {
-      title: formData.title,
-      author: formData.author,
-      genre: formData.genre,
-      year_published: formData.year_published,
-      poem_txt: formData.poem_txt,
-      poem_type: formData.poem_type
+    const updatedProfile = {
+      username: formData.username,
+      bio: formData.bio,
+      instagram_handle: formData.instagram,
+      twitter_handle: formData.twitter_handle,
+      avatar: formData.avatar,
+      email: formData.email
     }
-    fetch(`/poems/${id}`,
+    fetch(`/users/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -57,9 +52,9 @@ const EditUserProfile = ({ currentUser }) => {
       body: JSON.stringify(updatedPoem)
     })
     .then((r) => r.json())
-    .then((updatedPoem) => {
-      onUpdatePoem(updatedPoem);
-      navigate("/poems")
+    .then((updatedUser) => {
+      onUpdateUser(updatedUser);
+      navigate("/profile")
     })
   }
 

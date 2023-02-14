@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
   post '/signup', to: 'users#create'
+  patch '/edit_profile', to: 'users#update_profile'
 
   #administrator routes
 

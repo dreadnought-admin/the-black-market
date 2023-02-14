@@ -6,6 +6,8 @@ const Navbar = ({ updateUser, currentUser }) => {
 
   const navigate = useNavigate();
 
+  const { username } = currentUser
+
     const handleLogOut = () => {
         fetch("/logout", {
             method: "DELETE",
@@ -17,15 +19,18 @@ const Navbar = ({ updateUser, currentUser }) => {
         });
     }
 
-
   return (
     <div>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/records">Records</NavLink>
-      <NavLink to="/signup">Create Acct</NavLink>
-      <NavLink to="/login">Login</NavLink>
+      {!currentUser?
+        <NavLink to="/signup">Create Account</NavLink> : null}
+      
+      {!currentUser? 
+      <NavLink to="/login">Login</NavLink> : null }
+      
       {currentUser&&(
-        <NavLink to="/profile">Welcome back, currentUser</NavLink>
+        <NavLink to="/profile">Welcome back, {username}</NavLink>
       )}
       {currentUser&&(
         <NavLink onClick={handleLogOut} to="/">Logout</NavLink>

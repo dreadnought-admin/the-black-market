@@ -168,12 +168,15 @@ const App = () => {
 
           <Route
           exact path = "/users/:id/edit"
-          element = {<EditUserProfile />}
+          element = {
+          <EditUserProfile 
+          user={currentUser} 
+          setCurrentUser={setCurrentUser}/>}
           />
 
           <Route
           exact path = "/records/:id/edit"
-          element = {<EditSelfRecord />}
+          element = {<EditSelfRecord/>}
           />
 
           <Route
