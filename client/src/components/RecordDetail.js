@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import Spotify from 'react-spotify-embed'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -70,7 +71,7 @@ if (!user) return <h2>Loading...</h2>
       <p>{condition}</p>
       <p>{release_date}, {release_description}</p>
       <p>{record_labels}</p>
-      <a href={spotify_link}></a>
+      <Spotify link={spotify_link}/>
       <p>For sale by: {user.username}</p>
       <p>Sale Price: {price} </p>
       <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>
