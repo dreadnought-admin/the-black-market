@@ -27,7 +27,7 @@ const App = () => {
   const [recordId, setRecordId] = useState(null);
 
   useEffect(() => {
-    fetch("/authorized_users").then((r) => { 
+    fetch("/authorized_user").then((r) => { 
       if (r.ok) {
         r.json().then((user) => {
           updateUser(user)
