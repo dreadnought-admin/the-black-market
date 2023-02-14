@@ -1,47 +1,64 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-const RecordDetail = () => {
+const RecordDetail = ({ currentUser, enterRecordEdit }) => {
 
-  const [record, setRecord] = useState("")
-  const { id } = useParams()
+  const { id } = useParams();
 
+  const [ record, setRecord ] = useState([])
   useEffect(() => {
     fetch(`/records/${id}`)
     .then((r) => r.json())
-    .then((record) => {
-      setRecord(record)
+    .then((record_detail) => {
+      setRecord(record_detail)
     })
   }, [id])
 
-  const { 
-    album_title, 
-    artist_name, 
-    album_cover, 
-    release_date } = record
+  const { user, genre_id, album_name, 
+  artist_name, album_cover, condition, 
+  release_date, release_description, record_labels, 
+  spotify_link, price, in_stock } = record
 
+console.log(user)
+
+if (!user) return <h2>Loading...</h2>
+
+  // useEffect(() => {
+  //   fetch(`/records/${id}`)
+  //   .then((r) => r.json())
+  //   .then((record_detail) => {
+  //     setRecordDetails(record_detail)
+  //   })
+  // }, [id])
+
+  
+
+  const handleEditClick = () => {
+    enterRecordEdit(id);
+  }
+
+  console.log({price})
+  // in stock will need to be a state function
 
   return (
     <div>
-      <div>
-        <div className="details">
-          <h1 className="detail_title">{album_title}</h1>
-          <h2>{artist_name}</h2>
-          <h2>{release_date}</h2>
-          <img src={album_cover}></img>
-        </div>
-      </div>
-      <div className="detail_links">
-        <Link to="/records">
-        <button className="button" type="button">Bac to Home</button>
-        </Link>
-        <Link className="detail_edit" to={`/records/${id}/edit`}>
-          Suggest an Edit
-        </Link>
-      </div>
-      {/* <button type="button" onClick={handleFavorite}>Favorite</button> */}
-
-      
+    <div>
+      <p>{genre_id}</p>
+      <img src={album_cover}></img>
+      <p>{album_name}, {artist_name}</p>
+      <p>{condition}</p>
+      <p>{release_date}, {release_description}</p>
+      <p>{record_labels}</p>
+      <a href={spotify_link}></a>
+      <p>For sale by: {user.username}</p>
+      <p>Sale Price: {price}</p>
+      <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>
+    </div>
+    <div>
+    <Link to="/records">Back to browsing</Link>
+    </div>
+    <Link to={`/records/${id}/edit`}>Edit This
+    </Link>
     </div>
   )
 }
