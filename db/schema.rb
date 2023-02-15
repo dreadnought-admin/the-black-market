@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_14_230943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
+  create_table "shopping_carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_shopping_carts_on_record_id"
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "bio"
@@ -113,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
 
   create_table "watches", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "watched_type", null: true
+    t.string "watched_type", null: false
     t.bigint "watched_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,5 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_060020) do
   add_foreign_key "comments", "users"
   add_foreign_key "purchases", "users"
   add_foreign_key "records", "users"
+  add_foreign_key "shopping_carts", "records"
+  add_foreign_key "shopping_carts", "users"
   add_foreign_key "watches", "users"
 end

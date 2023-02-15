@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :comments
   resources :records
 
+  resources :shopping_carts
+  resources :purchases
+
   resources :users
 
   get 'sessions/create'
@@ -18,11 +21,26 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
 
-  #administrator routes
+  #order routes 
 
   get '/user_purchases/:id', to: 'purchases#user_purchases'
+  post '/order/:user_id/:orderId/:total', to: 'sessions#create_order'
+
+
+  #shopping cart custom
+
+  get 'shopping_cart', to: 'sessions#shopping_cart'
+  post 'new/:user_id/:record_id', to: 'shopping_carts#new'
+
+  delete '/delete/:user_id', to: 'shopping_carts#delete_all'
+  delete '/destroy/:user_id/:record_id', to: 'shopping_cart#delete_cart_item'
+
+
+
   get '/user_records/:id', to: 'records#user_records'
 
+  #randomized features
+  
   get '/randomized_records', to: 'records#randomized_records'
 
 end

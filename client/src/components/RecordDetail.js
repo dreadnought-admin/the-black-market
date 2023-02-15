@@ -62,6 +62,8 @@ if (!user) return <h2>Loading...</h2>
 
   // in stock will need to be a state function
 
+  console.log(spotify_link)
+
   return (
     <div>
     <div>
@@ -71,7 +73,7 @@ if (!user) return <h2>Loading...</h2>
       <p>{condition}</p>
       <p>{release_date}, {release_description}</p>
       <p>{record_labels}</p>
-      <Spotify link={spotify_link}/>
+      {spotify_link ? <Spotify link={spotify_link}/> : null }
       <p>For sale by: {user.username}</p>
       <p>Sale Price: {price} </p>
       <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>

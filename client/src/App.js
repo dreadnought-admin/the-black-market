@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import axios from 'axios'
 
 import About from './components/About'
 import Home from './components/Home'
@@ -11,11 +12,13 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Footer from './components/Footer'
 import Checkout from './components/Checkout'
+import Cart from './components/Cart'
+import CartItem from './components/CartItem'
 import RecordList from './components/RecordList'
 import Search from './components/Search'
 import RecordDetail from './components/RecordDetail'
 import FeaturedRecords from './components/FeaturedRecords'
-import Cart from './components/Cart'
+
 import EditSelfRecord from './components/EditSelfRecord'
 import EditUserProfile from './components/EditUserProfile'
 // import Watches from './components/Watches'
@@ -33,6 +36,10 @@ const App = () => {
   const [cartNumber, setCartNumber] = useState(0);
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+
+  const [orderIndex, setOrderIndex] = useState("All");
+
+  // const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/authorized_user").then((r) => { 
@@ -54,6 +61,53 @@ const App = () => {
     .then((records) => {
       setRecords(records);
     })
+  }
+
+  useEffect(() => {
+    fetch("/shopping_cart")
+    .then((r) => r.json())
+    .then((data) => {
+      setCartNumber(data.total_items);
+      setCartTotal(data.total_price);
+      setCart(data.records)
+    })
+  }, [])
+
+  const addToCart = (record_id) => {
+    axios.post(`/new/${currentUser.id}/${record_id}`)
+    .then((r) => {
+      setCartNumber(cartNumber + 1);
+      setCart((cart) => [... cart, r.data]);
+      setCartTotal(cartTotal + r.data.price)
+    })
+  }
+
+  const cartRemoveAll = () => {
+    axios.delete(`/delete/${currentUser.id}`)
+    .then(() => {
+      setCartNumber(0);
+      setCart([]);
+      setCartTotal(0);
+    })
+  }
+
+  const removeCartItem = (record_id) => {
+    axios.delete(`/destroy/${currentUser.id}/${record_id}`)
+    .then(() => {
+      setCartNumber(cartNumber - 1);
+      let record = record.find((element) => element.id === record_id)
+      setCartTotal(cartTotal - record.price);
+      const newRecords = record.filter((item) => item.id !== record.id)
+      setCart(newRecords);
+    })
+  }
+
+  const handleCheckoutClick = () => {
+    if (cartNumber === 0) {
+      return null;
+    } else {
+      console.log("UseNav")
+    }
   }
 
   // delete
@@ -124,11 +178,14 @@ const handleDeleteRecord = (deleted) => {
           element = {<About />}
           />
 
-          {/* <Route
+          <Route
           exact path = "/cart"
           element = {<Cart cart={cart} 
+          removeCartItem={removeCartItem}
+          cartRemoveAll={cartRemoveAll}
+          handleCheckoutClick={handleCheckoutClick}
           />}
-          /> */}
+          />
 
           <Route
           exact path = "/checkout"
@@ -154,7 +211,13 @@ const handleDeleteRecord = (deleted) => {
           <Search search={search} setSearch={setSearch} />
           <RecordList 
           records={searchQuery}
-          handleDeleteRecord={handleDeleteRecord}/></>}
+          handleDeleteRecord={handleDeleteRecord}
+
+          addToCart={addToCart}
+          removeCartItem={removeCartItem}
+          cart={cart}
+          currentUser={currentUser}
+          /></>}
           />
 
           <Route
@@ -170,13 +233,19 @@ const handleDeleteRecord = (deleted) => {
           element = {<EditSelfRecord onUpdateSelfRecord={onUpdateSelfRecord}/>}
           />
 
+          {/* THIS IS WHAT YOU MODIFIED */}
           <Route
           exact path = "/records/:id"
           element = {<RecordDetail 
           currentUser={currentUser}
           record={recordDetail}
           setRecordDetail={setRecordDetail}
-          handleDeleteRecord={handleDeleteRecord}/>}
+          handleDeleteRecord={handleDeleteRecord}
+          // {/* THIS IS WHAT YOU MODIFIED */}
+          addToCart={addToCart}
+          removeCartItem={removeCartItem}
+          cart={cart}
+          />}
           />
 
           {/* {currentUser && (
