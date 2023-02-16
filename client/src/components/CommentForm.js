@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CheckoutConfirm = () => {
+const CommentForm = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const CheckoutConfirm = () => {
   )
 }
 
-export default CheckoutConfirm
+export default CommentForm

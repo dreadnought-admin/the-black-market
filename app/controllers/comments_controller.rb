@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
     #show individual comment
     def show
+        @comment = Comment.find(params[:id])
         render json: @comment
     end
 

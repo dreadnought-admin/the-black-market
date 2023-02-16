@@ -75,15 +75,14 @@ const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNu
           <p>Total: {totalWithTax.toFixed(2)}</p>
         </div>
       </div>
-
+      {isOpen === true? (
+        <Confirmation orderId={orderId} handleClose={handleClose} currentUser={currentUser}/>)  : null 
+      }
       <form onSubmit={handlePlaceOrder}>
         <button type="submit">
           Place Order
         </button>
       </form>
-      {isOpen === true? (
-        <Confirmation orderId={orderId} handleClose={handleClose} currentUser={currentUser}/>)  : null 
-      }
       <div>
       </div>
     </div>

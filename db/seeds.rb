@@ -145,25 +145,45 @@ r6 = Record.create(
 
 puts "Records spun!"
 
+# # puts "Creating carts..."
+
+# # cr1 = RecordsInCart.create(record_id: r1.id)
+# # cr2 = RecordsInCart.create(record_id: r2.id)
+# # cr3 = RecordsInCart.create(record_id: r4.id)
+# # cr4 = RecordsInCart.create(record_id: r5.id)
+
 # puts "Creating carts..."
 
-# cr1 = RecordsInCart.create(record_id: r1.id)
-# cr2 = RecordsInCart.create(record_id: r2.id)
-# cr3 = RecordsInCart.create(record_id: r4.id)
-# cr4 = RecordsInCart.create(record_id: r5.id)
-
-puts "Creating carts..."
-
-# s1 = ShoppingCart.create!(user_id: u1.id)
-# s2 = ShoppingCart.create!(user_id: u3.id)
-# s3 = ShoppingCart.create!(user_id: u2.id)
+# # s1 = ShoppingCart.create!(user_id: u1.id)
+# # s2 = ShoppingCart.create!(user_id: u3.id)
+# # s3 = ShoppingCart.create!(user_id: u2.id)
 
 
 puts "Generating comments..."
 
-# 2.times do 
-#     Comment.create!(user_id: u1.id, record_id: r1.id,
-#                     comment_content:Faker::Lorem.sentence)
-# end 
+2.times do 
+    Comment.create!(user_id: u1.id, record_id: r2.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
+
+2.times do 
+    Comment.create!(user_id: u3.id, record_id: r1.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
+
+2.times do 
+    Comment.create!(user_id: u2.id, record_id: r4.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
+
+2.times do 
+    Comment.create!(user_id: u3.id, record_id: r5.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
+
+2.times do 
+    Comment.create!(user_id: u1.id, record_id: r6.id,
+                    comment_content:Faker::Lorem.sentence)
+end 
 
 puts "Comments generated!"

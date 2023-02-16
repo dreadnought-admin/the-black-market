@@ -3,9 +3,10 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import Spotify from 'react-spotify-embed'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import CommentSection from './CommentSection';
 
 
-const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord, addToCart, removeCartItem, cart }) => {
+const RecordDetail = ({ records, currentUser, enterRecordEdit, handleDeleteRecord, addToCart, removeCartItem, cart }) => {
 
   
 
@@ -13,9 +14,18 @@ const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord, addToC
   const navigate = useNavigate();
 
   const [ recordDetail, setRecordDetail ] = useState([])
-  const [ comment, setComment ] = useState([])
 
-  console.log(recordDetail.id)
+  const [comments, setComments] = useState([])
+
+  useEffect(() => {
+    fetch(`/records/${id}`)
+    .then((r) => r.json())
+    .then((recordData) => {
+      setComments(recordData.comments)
+    })
+  }, [])
+
+  console.log(comments)
 
   useEffect(() => {
     fetch(`/records/${id}`)
@@ -24,6 +34,7 @@ const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord, addToC
       setRecordDetail(record_detail)
     })
   }, [id])
+
 
   const isFound = cart?.some((element) => {
     if (element.id === recordDetail.id) {
@@ -71,15 +82,13 @@ const checkUser = () => {
 } 
 
 
+
 if (!user) return <h2>Loading...</h2>
 
   const handleEditClick = () => {
     enterRecordEdit(id);
   }
 
-  // in stock will need to be a state function
-
-  console.log(spotify_link)
 
   return (
     <div>
@@ -93,7 +102,11 @@ if (!user) return <h2>Loading...</h2>
       {spotify_link ? <Spotify link={spotify_link}/> : null }
       <p>For sale by: {user.username}</p>
       <p>Sale Price: {price} </p>
-      <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>
+      <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>In Stock: { in_stock ? "Yes" : "No" }</button>
+    </div>
+
+    <div>
+      <CommentSection records={records} comments={comments} setComments={setComments} currentUser={currentUser}></CommentSection>
     </div>
 
     <div>

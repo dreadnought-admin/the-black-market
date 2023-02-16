@@ -30,6 +30,7 @@ const App = () => {
   const [recordDetail, setRecordDetail] = useState([]);
   const [currentUser, setCurrentUser] = useState(false);
   const [watches, setWatches] = useState([]);
+  const [comments, setComments] = useState([]);
 
   const [recordId, setRecordId] = useState(null);
 
@@ -62,6 +63,7 @@ const App = () => {
       setRecords(records);
     })
   }
+
 
   useEffect(() => {
     fetch("/shopping_cart")
@@ -251,6 +253,11 @@ const handleDeleteRecord = (deleted) => {
           addToCart={addToCart}
           removeCartItem={removeCartItem}
           cart={cart}
+
+          records={records}
+
+          comments={comments}
+          setComments={setComments}
           />}
           />
 
