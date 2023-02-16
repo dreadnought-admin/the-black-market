@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :watched_records, only: [:index, :create, :destroy]
-  get '/watched', to: 'watched_records#index', as: 'watched'
+  # resources :watched_records, only: [:index, :create, :destroy]
+  # get '/watched', to: 'watched_records#index', as: 'watched'
 
   resources :comments
   resources :records
@@ -38,6 +38,15 @@ Rails.application.routes.draw do
 
 
   get '/user_records/:id', to: 'records#user_records'
+
+  #watches
+
+  resources :users, only: [:index, :show, :create, :destroy] do
+    resources :watches
+  end
+
+  resources :watches, only: [:index, :show, :create, :destroy]
+
 
   #randomized features
   

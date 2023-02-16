@@ -187,3 +187,17 @@ end
 end 
 
 puts "Comments generated!"
+
+puts "Creating watches..."
+
+Watch.create!(user_id: u1.id, record_id: r1.id )
+Watch.create!(user_id: u2.id, record_id: r2.id )
+Watch.create!(user_id: u3.id, record_id: r4.id )
+Watch.create!(user_id: u1.id, record_id: r6.id )
+Watch.create!(user_id: u2.id, record_id: r4.id )
+Watch.create!(user_id: u3.id, record_id: r3.id )
+Watch.create!(user_id: u1.id, record_id: r2.id )
+Watch.create!(user_id: u2.id, record_id: r1.id )
+Watch.create!(user_id: u3.id, record_id: r1.id )
+
+puts "Watches created!"

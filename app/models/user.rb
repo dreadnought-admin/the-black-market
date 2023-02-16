@@ -8,7 +8,8 @@ class User < ApplicationRecord
     has_associated_audits
 
     has_many :watches, dependent: :destroy
-    has_many :watched_records, through: :watches, source: :watched, source_type: 'Record'
+    has_many :watched_records, through: :watches, source: :record
+    #has_many :watched_records, through: :watches, source: :watched, source_type: 'Record'
 
     has_many :comments, dependent: :destroy
 

@@ -64,6 +64,12 @@ const App = () => {
     })
   }
 
+  useEffect(() => {
+    fetch(`/users/${currentUser.id}/watches`)
+    .then((r) => r.json())
+    .then((watches) => 
+    setWatches(watches))
+  }, [currentUser])
 
   useEffect(() => {
     fetch("/shopping_cart")
@@ -106,6 +112,19 @@ const App = () => {
     })
   }
 
+  const handleDeleteWatch = (id) => {
+    fetch(`/users/${currentUser.id}/watches/${id}`,
+    { 
+      method: "DELETE",
+    })
+    .then((r) => r.json())
+    .then(() => {
+      setWatches((watches) => watches.filter((watch) => watch.id !== id))
+      alert("You removed this item from your watched collection")
+    })
+  } 
+
+
   const handleCheckoutClick = () => {
     if (cartNumber === 0) {
       return null;
@@ -143,6 +162,8 @@ const handleDeleteRecord = (deleted) => {
   const enterRecordEdit = (recordId) => {
     setRecordId(recordId)
   }
+
+
 
   // set current user
 
@@ -258,6 +279,10 @@ const handleDeleteRecord = (deleted) => {
 
           comments={comments}
           setComments={setComments}
+
+          watches={watches}
+          setWatches={setWatches}
+          handleDeleteWatch={handleDeleteWatch}
           />}
           />
 
@@ -282,7 +307,8 @@ const handleDeleteRecord = (deleted) => {
             <Route
             exact path = "/profile"
             element = {<UserProfile 
-            currentUser={currentUser}/>}
+            currentUser={currentUser}
+            watches={watches}/>}
             /> 
           )}
 

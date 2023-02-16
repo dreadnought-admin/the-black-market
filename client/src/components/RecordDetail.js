@@ -6,9 +6,9 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import CommentSection from './CommentSection';
 
 
-const RecordDetail = ({ records, currentUser, enterRecordEdit, handleDeleteRecord, addToCart, removeCartItem, cart }) => {
+const RecordDetail = ({ records, currentUser, enterRecordEdit, handleDeleteRecord, addToCart, removeCartItem, cart, watches, setWatches, handleDeleteWatch }) => {
 
-  
+  console.log({watches})
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,7 +25,28 @@ const RecordDetail = ({ records, currentUser, enterRecordEdit, handleDeleteRecor
     })
   }, [])
 
-  console.log(comments)
+  const handleWatch = () => {
+    const watchObj = { user_id: currentUser.id, record_id: id }
+    fetch("/watches", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      body: JSON.stringify(watchObj)
+    })
+    .then((r) => r.json())
+    .then((data) => {
+      setWatches([... watches, data])
+      alert("Record added to your watch collection!")
+    })
+  }
+
+  const handleDeleteWatchClick = () => {
+    fetch(`/watches/${id}`, {
+      method: "DELETE",
+    })
+    handleDeleteWatch(id)
+  }
 
   useEffect(() => {
     fetch(`/records/${id}`)
@@ -84,6 +105,7 @@ const checkUser = () => {
 
 
 if (!user) return <h2>Loading...</h2>
+if (!watches) return <h2>Watching...</h2>
 
   const handleEditClick = () => {
     enterRecordEdit(id);
@@ -119,6 +141,14 @@ if (!user) return <h2>Loading...</h2>
           Add to Cart
         </button>
       )}
+    </div>
+    <div>
+      {currentUser? (
+        <button onClick={handleWatch}>👀 Watch this</button>
+      ) : null }
+      {currentUser? (
+        <button onClick={handleDeleteWatchClick}>Remove from Watches</button>
+      ) : null }
     </div>
 
 

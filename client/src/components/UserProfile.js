@@ -6,7 +6,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import EditUserProfile from './EditUserProfile'
 
 
-const UserProfile = ({ currentUser }) => {
+const UserProfile = ({ currentUser, watches }) => {
   const [userRecords, setUserRecords] = useState([]);
   const [user, setUser] = useState([])
 
@@ -50,7 +50,6 @@ const UserProfile = ({ currentUser }) => {
 
   if (!user) return <h2>Loading user profile...</h2>
 
-  console.log(avatar)
 
   return (
     <div>
@@ -59,6 +58,7 @@ const UserProfile = ({ currentUser }) => {
         <RecordList records={userRecords}/>
       <div>
         <h3>Your Current Watches:</h3>
+        <RecordList records={watches}/>
       </div>
       <div>
         Albums You Might Like
