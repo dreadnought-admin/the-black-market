@@ -5,13 +5,17 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
-const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord }) => {
+const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord, addToCart, removeCartItem, cart }) => {
+
+  
 
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [ recordDetail, setRecordDetail ] = useState([])
   const [ comment, setComment ] = useState([])
+
+  console.log(recordDetail.id)
 
   useEffect(() => {
     fetch(`/records/${id}`)
@@ -21,7 +25,12 @@ const RecordDetail = ({ currentUser, enterRecordEdit, handleDeleteRecord }) => {
     })
   }, [id])
 
-  
+  const isFound = cart?.some((element) => {
+    if (element.id === recordDetail.id) {
+      return true
+    }
+    return false; 
+  })
 
   const handleDelete = () => {
     fetch(`/records/${recordDetail.id}`, {
@@ -53,6 +62,14 @@ const submitDelete = () => {
   });
 }
 
+const checkUser = () => {
+  if (currentUser.id === user.id)
+  return true
+  else { 
+    return false 
+  }
+} 
+
 
 if (!user) return <h2>Loading...</h2>
 
@@ -78,11 +95,26 @@ if (!user) return <h2>Loading...</h2>
       <p>Sale Price: {price} </p>
       <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>Up For Grabs?: { in_stock ? "Yes" : "No" }</button>
     </div>
+
     <div>
-      {user.id != currentUser.id ? null : <button type="button" onClick={submitDelete}>Delete</button>}
+      {isFound ? (
+        <button onClick={() => removeCartItem(recordDetail.id)}>
+          Remove From Cart
+      </button>
+      ) : (
+        <button onClick={() => addToCart(recordDetail.id)}>
+          Add to Cart
+        </button>
+      )}
+    </div>
+
+
+
+    <div>
+      {/* {user.id !== currentUser.id ? null : <button type="button" onClick={submitDelete}>Delete</button>} */}
     </div>
     <div>
-    {user.id != currentUser.id ? null : <Link to={`/records/${id}/edit`}>Edit This
+    {user.id !== currentUser.id ? null : <Link to={`/records/${id}/edit`}>Edit This
     </Link>}
     </div>
 

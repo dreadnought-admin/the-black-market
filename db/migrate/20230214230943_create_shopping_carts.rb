@@ -3,6 +3,7 @@ class CreateShoppingCarts < ActiveRecord::Migration[7.0]
     create_table :shopping_carts do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.belongs_to :record, null: false, foreign_key: true
+      
 
       t.timestamps
     end

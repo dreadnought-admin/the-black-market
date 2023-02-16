@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   post 'new/:user_id/:record_id', to: 'shopping_carts#new'
 
   delete '/delete/:user_id', to: 'shopping_carts#delete_all'
-  delete '/destroy/:user_id/:record_id', to: 'shopping_cart#delete_cart_item'
+  delete '/destroy/:user_id/:record_id', to: 'shopping_carts#delete_cart_item'
 
 
 

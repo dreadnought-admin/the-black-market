@@ -33,6 +33,10 @@ const Navbar = ({ updateUser, currentUser }) => {
 
       {currentUser &&(
       <NavLink to="/new_sale">Sell a Record</NavLink>)}
+
+      {currentUser && (
+        <NavLink to="/cart">Your Cart</NavLink>
+      )}
       
       {currentUser&&(
         <NavLink to="/profile">Welcome back, {username}</NavLink>

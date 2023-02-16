@@ -2,11 +2,12 @@ import React from 'react'
 
 const CartItem = ({ cartItem, removeCartItem }) => {
 
-  const { title, price } = cartItem;
-
+  const { album_name, album_cover, price } = cartItem;
+  
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>{album_name}</h3>
+      <img height="50px" width="50px" src={album_cover}></img>
       <p>${price}</p>
       <div>
         <button onClick={() => removeCartItem(cartItem.id)}>

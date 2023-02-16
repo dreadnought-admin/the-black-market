@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
     audited
     
-    has_many :shopping_cart
+    has_many :shopping_cart, dependent: :destroy
     has_many :records, through: :shopping_cart
     has_many :purchases, dependent: :destroy
     has_associated_audits

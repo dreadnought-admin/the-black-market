@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Routes, Route } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import About from './components/About'
@@ -13,7 +14,6 @@ import Signup from './components/Signup'
 import Footer from './components/Footer'
 import Checkout from './components/Checkout'
 import Cart from './components/Cart'
-import CartItem from './components/CartItem'
 import RecordList from './components/RecordList'
 import Search from './components/Search'
 import RecordDetail from './components/RecordDetail'
@@ -39,7 +39,7 @@ const App = () => {
 
   const [orderIndex, setOrderIndex] = useState("All");
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/authorized_user").then((r) => { 
@@ -82,6 +82,8 @@ const App = () => {
     })
   }
 
+
+
   const cartRemoveAll = () => {
     axios.delete(`/delete/${currentUser.id}`)
     .then(() => {
@@ -95,9 +97,9 @@ const App = () => {
     axios.delete(`/destroy/${currentUser.id}/${record_id}`)
     .then(() => {
       setCartNumber(cartNumber - 1);
-      let record = record.find((element) => element.id === record_id)
+      const record = cart.find((element) => element.id === record_id)
       setCartTotal(cartTotal - record.price);
-      const newRecords = record.filter((item) => item.id !== record.id)
+      const newRecords = cart.filter((item) => item.id !== record.id)
       setCart(newRecords);
     })
   }
@@ -106,7 +108,7 @@ const App = () => {
     if (cartNumber === 0) {
       return null;
     } else {
-      console.log("UseNav")
+      navigate("/checkout")
     }
   }
 
@@ -144,6 +146,8 @@ const handleDeleteRecord = (deleted) => {
 
   const updateUser = (user) => setCurrentUser(user);
 
+  
+
   // search query
 
   const [search, setSearch] = useState("")
@@ -155,9 +159,10 @@ const handleDeleteRecord = (deleted) => {
     )
   })
 
+  
+
   return (
     <div>
-      <Router>
 
         <Navbar updateUser={updateUser} currentUser={currentUser} />
 
@@ -184,6 +189,7 @@ const handleDeleteRecord = (deleted) => {
           removeCartItem={removeCartItem}
           cartRemoveAll={cartRemoveAll}
           handleCheckoutClick={handleCheckoutClick}
+          cartTotal={cartTotal}
           />}
           />
 
@@ -233,7 +239,7 @@ const handleDeleteRecord = (deleted) => {
           element = {<EditSelfRecord onUpdateSelfRecord={onUpdateSelfRecord}/>}
           />
 
-          {/* THIS IS WHAT YOU MODIFIED */}
+          
           <Route
           exact path = "/records/:id"
           element = {<RecordDetail 
@@ -241,7 +247,7 @@ const handleDeleteRecord = (deleted) => {
           record={recordDetail}
           setRecordDetail={setRecordDetail}
           handleDeleteRecord={handleDeleteRecord}
-          // {/* THIS IS WHAT YOU MODIFIED */}
+          
           addToCart={addToCart}
           removeCartItem={removeCartItem}
           cart={cart}
@@ -274,8 +280,7 @@ const handleDeleteRecord = (deleted) => {
           )}
 
         </Routes>
-          <Footer />
-      </Router>
+        <Footer />
     </div>
   )
 }

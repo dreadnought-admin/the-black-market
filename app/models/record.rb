@@ -7,13 +7,15 @@ class Record < ApplicationRecord
     belongs_to :user
 
     has_many :comments, dependent: :destroy
-    #has_and_belongs_to_many :cart, dependent: :destroy
 
     validates :album_name, presence: true
     validates :artist_name, presence: true
     validates :album_cover, presence: true
     validates :condition, presence: true
     validates :price, presence: true
+
+    has_and_belongs_to_many :shopping_cart
+    
 
     aasm do
         state :unread, :initial => true 

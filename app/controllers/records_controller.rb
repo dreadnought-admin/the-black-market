@@ -51,7 +51,7 @@ class RecordsController < ApplicationController
         params.permit(
             :user_id, :album_name, :artist_name, :album_cover, 
             :condition, :release_date, :release_description,
-            :record_labels, :price, :spotify_link
+            :record_labels, :price, :spotify_link, :genre, :in_stock
         )
     end 
 

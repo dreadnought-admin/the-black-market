@@ -6,7 +6,13 @@ const initialState = {
   album_name: "",
   artist_name: "",
   release_date: "",
-  album_cover: ""
+  album_cover: "",
+  condition: "",
+  release_description: "",
+  release_date: "",
+  record_labels: "",
+  spotify_link: "",
+  price: 0
 }
 
 
@@ -38,8 +44,11 @@ const EditSelfRecord = ({ onUpdateSelfRecord }) => {
         album_name: formData.album_name,
         artist_name: formData.artist_name,
         release_date: formData.release_date,
-        album_cover: formData.album_cover
-
+        album_cover: formData.album_cover,
+        condition: formData.condition,
+        release_description: formData.release_description,
+        price: formData.price,
+        spotify_link: formData.spotify_link,
       }
       fetch(`/records/${id}`,
       {

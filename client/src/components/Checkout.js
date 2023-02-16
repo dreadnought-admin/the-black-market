@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Confirmation from './Confirmation'
 import axios from 'axios'
  
 const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNumber, setCartTotal }) => {
   
+  console.log({cart})
+  console.log({cartTotal})
+  console.log({cartNumber})
+  console.log({currentUser})
+  console.log({setCart})
+  console.log({setCartNumber})
+  console.log({setCartTotal})
+  
+
+
   const [orderId, setOrderId] = useState("")
   const [isOpen, setisOpen] = useState(false)
   const navigate = useNavigate()
@@ -36,7 +47,7 @@ const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNu
     }
   }, [cart, navigate]);
 
-  const allCarts = cart.map((record) => {
+  const allCarts = cart?.map((record) => {
     return (
       <div key={record.id}> 
         <p>{record.title}</p>
@@ -64,11 +75,11 @@ const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNu
 
       <form onSubmit={handlePlaceOrder}>
         <button type="submit">
-          Place ORder
+          Place Order
         </button>
       </form>
       {isOpen === true? (
-        console.log("fuck you") ) : null 
+        <Confirmation orderId={orderId} handleClose={handleClose} currentUser={currentUser}/> ) : null 
       }
       <div>
       </div>

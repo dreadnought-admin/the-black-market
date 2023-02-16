@@ -14,6 +14,8 @@ c4 = Genre.create(genre: 'Goth Rock')
 
 puts "Genres created!"
 
+
+
 puts "Summoning users..."
 
 u1 = User.create(username: "Peter", 
@@ -134,7 +136,7 @@ r6 = Record.create(
     album_cover: "https://i.discogs.com/gvazKF-vrdSZYNJ1vDa1klvrRYfRJ8g0wU_f-VmbHUY/rs:fit/g:sm/q:90/h:586/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0Mjgx/Mi0xNDU5MTY1OTcx/LTY0NTcuanBlZw.jpeg", 
     condition: "Near-Mint", 
     genre: c3, 
-    user_id: u1.id, 
+    user_id: u1.id,
     release_date: "June 6, 1981", 
     release_description: "Juju is the fourth studio album by English rock band Siouxsie and the Banshees. It was recorded at Surrey Sound studio with Nigel Gray as co-producer, and was released on 19 June 1981 by record label Polydor. Two singles were released from Juju: 'Spellbound' and 'Arabian Knights'.",
     record_labels: "PVC Records", 
@@ -143,11 +145,25 @@ r6 = Record.create(
 
 puts "Records spun!"
 
+# puts "Creating carts..."
+
+# cr1 = RecordsInCart.create(record_id: r1.id)
+# cr2 = RecordsInCart.create(record_id: r2.id)
+# cr3 = RecordsInCart.create(record_id: r4.id)
+# cr4 = RecordsInCart.create(record_id: r5.id)
+
+puts "Creating carts..."
+
+# s1 = ShoppingCart.create!(user_id: u1.id)
+# s2 = ShoppingCart.create!(user_id: u3.id)
+# s3 = ShoppingCart.create!(user_id: u2.id)
+
+
 puts "Generating comments..."
 
-2.times do 
-    Comment.create!(user_id: u1.id, record_id: r1.id,
-                    comment_content:Faker::Lorem.sentence)
-end 
+# 2.times do 
+#     Comment.create!(user_id: u1.id, record_id: r1.id,
+#                     comment_content:Faker::Lorem.sentence)
+# end 
 
 puts "Comments generated!"
