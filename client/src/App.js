@@ -113,7 +113,7 @@ const App = () => {
   }
 
   const handleDeleteWatch = (id) => {
-    fetch(`/users/${currentUser.id}/watches/${id}`,
+    fetch(`/watches/${watches.id}`,
     { 
       method: "DELETE",
     })

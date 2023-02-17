@@ -11,7 +11,6 @@ const Comment = ({ comment, currentUser, setcomments }) => {
         .then(r => r.json())
         .then(commentData => {
           setShownComment(commentData)
-          console.log(commentData)
         })
       }, [])
 

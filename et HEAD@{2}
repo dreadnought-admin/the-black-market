@@ -1,0 +1,19 @@
+[33m66754f3de[m[33m ([m[1;36mHEAD -> [m[1;32mrecovered_v1[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{0}: checkout: moving from recovered_v1 to recovered_v1
+[33m66754f3de[m[33m ([m[1;36mHEAD -> [m[1;32mrecovered_v1[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{1}: reset: moving to recovered_v1
+[33m66754f3de[m[33m ([m[1;36mHEAD -> [m[1;32mrecovered_v1[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from recovered_v1 to recovered_v1
+[33m66754f3de[m[33m ([m[1;36mHEAD -> [m[1;32mrecovered_v1[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{3}: reset: moving to origin/main
+[33m4e1e3197b[m[33m ([m[1;31morigin/recovered_v1[m[33m, [m[1;32mbackup-main[m[33m)[m HEAD@{4}: checkout: moving from recovered_v1 to recovered_v1
+[33m4e1e3197b[m[33m ([m[1;31morigin/recovered_v1[m[33m, [m[1;32mbackup-main[m[33m)[m HEAD@{5}: commit: Implements watch collection
+[33m64016f739[m HEAD@{6}: commit: Enables comments
+[33me231eef9b[m HEAD@{7}: commit: Finally finishes all functionality. Thank you, Sam & David.
+[33m420542430[m HEAD@{8}: commit: Fixes slight bugs, removes delete option from individual user records
+[33mc9c01bbd2[m HEAD@{9}: commit: Builds cart components, builds purchase components, fixes webpack issue
+[33mb7bef4642[m HEAD@{10}: commit: Full CRUD
+[33m42f64cf42[m HEAD@{11}: commit: Establishes full CRUD
+[33m54e99c819[m HEAD@{12}: commit: Recovered CRUD
+[33me72530ee4[m HEAD@{13}: commit: Recovers most CRUD
+[33mcba882437[m HEAD@{14}: commit: MVP recovery
+[33m8cec216ab[m[33m ([m[1;31morigin/mvp[m[33m, [m[1;32mmvp[m[33m)[m HEAD@{15}: checkout: moving from mvp to recovered_v1
+[33m8cec216ab[m[33m ([m[1;31morigin/mvp[m[33m, [m[1;32mmvp[m[33m)[m HEAD@{16}: commit: Attempts to fix things
+[33m97a4bd5e4[m HEAD@{17}: checkout: moving from main to mvp
+[33m66754f3de[m[33m ([m[1;36mHEAD -> [m[1;32mrecovered_v1[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{18}: clone: from https://github.com/dreadnought-admin/the-black-market.git
