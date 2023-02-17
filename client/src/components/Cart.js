@@ -23,9 +23,9 @@ const Cart = ({ cart, removeCartItem, cartRemoveAll, cartTotal, handleCheckoutCl
             <p></p>
             <p>Subtotal: ${cartTotal <= 0 ? "0.00" : cartTotal?.toFixed(2)}</p>
           </div>
-          <button onClick={handleCheckoutClick}>Checkout</button>
+          <button className="button" onClick={handleCheckoutClick}>Checkout</button>
           
-          <button onClick={cartRemoveAll}>Remove All</button>
+          <button className="button" onClick={cartRemoveAll}>Remove All</button>
         </div>
       )
     }

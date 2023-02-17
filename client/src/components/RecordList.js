@@ -16,6 +16,7 @@ const RecordList = ({ currentUser, records, enterRecordEdit, handleDeleteRecord,
     />
   })
 
+  if (!records) return <img className="loading" src="/images/loading.gif"></img>
 
 
   return (

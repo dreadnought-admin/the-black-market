@@ -1,11 +1,21 @@
-import React from 'react'
-
 const Footer = () => {
-  return (
-    <div>
-      <h1>Hi, this is your Footer. I'm empty right now, but during CSS you'll fill me with some cool links.</h1>
-    </div>
-  )
+  return(
+      <footer className="footer">
+          <nav>
+              <div className="footerNav">
+                  <a target="_blank" className="navButton" href="https://en.wikipedia.org/wiki/Goth_subculture">
+                      Goth •
+                  </a>
+                  <a target="_blank" className="navButton" href="https://github.com/dreadnought-admin/the-black-market">
+                      GitHub •
+                  </a>
+                  <a target="_blank" className="navButton" href="https://www.reddit.com/r/goth/">
+                      r/goth
+                  </a>
+              </div>
+          </nav>
+      </footer>
+  );
 }
 
 export default Footer

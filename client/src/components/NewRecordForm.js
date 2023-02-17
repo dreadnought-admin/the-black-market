@@ -54,11 +54,11 @@ const handleChange = (e) => {
   return (
     <div>
       <fieldset>
-        <legend>Sell a Record</legend>
+        <legend className="legend_text">Sell a Record</legend>
         <form onSubmit={handleSubmit}>
         <ul>
         <li>
-            <label htmlFor='artist_name'>Artist Name</label>
+            <label className="form_header"  htmlFor='artist_name'>Artist Name</label>
             <input
             className="input"
             type="text"
@@ -70,7 +70,7 @@ const handleChange = (e) => {
             />
           </li>
         <li>
-            <label htmlFor='album_name'>Album Name</label>
+            <label className="form_header"  htmlFor='album_name'>Album Name</label>
             <input
             className="input"
             type="text"
@@ -82,7 +82,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='album_cover'>Album Cover</label>
+            <label className="form_header"  htmlFor='album_cover'>Album Cover</label>
             <input
             className="input"
             type="text"
@@ -94,7 +94,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='condition'>Condition</label>
+            <label className="form_header" htmlFor='condition'>Condition</label>
             <input
             className="input"
             type="text"
@@ -118,7 +118,7 @@ const handleChange = (e) => {
             />
           </li> */}
           <li>
-            <label htmlFor='release_date'>Release Date</label>
+            <label className="form_header"  htmlFor='release_date'>Release Date</label>
             <input
             className="input"
             type="text"
@@ -130,7 +130,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='release_description'>Release Description</label>
+            <label className="form_header"  htmlFor='release_description'>Release Description</label>
             <input
             className="input"
             type="textarea"
@@ -142,7 +142,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='record_labels'>Record Labels</label>
+            <label className="form_header" htmlFor='record_labels'>Record Labels</label>
             <input
             className="input"
             type="text"
@@ -154,7 +154,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='spotify_link'>Spotify Link (Optional)</label>
+            <label className="form_header"  htmlFor='spotify_link'>Spotify Link (Optional)</label>
             <input
             className="input"
             type="text"
@@ -165,7 +165,7 @@ const handleChange = (e) => {
             />
           </li>
           <li>
-            <label htmlFor='price'>Price</label>
+            <label className="form_header" htmlFor='price'>Price</label>
             <input
             className="input"
             type="number"
@@ -179,7 +179,7 @@ const handleChange = (e) => {
         </ul>
         </form>
       </fieldset>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
+      <button className="button" type="submit" onClick={handleSubmit}>Submit</button>
     </div>
   )
 }

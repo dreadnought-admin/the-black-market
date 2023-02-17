@@ -1,5 +1,6 @@
 import React from 'react'
 import Comment from './Comment'
+import CommentForm from './CommentForm'
 
 const CommentSection = ({ records, currentUser, comments, setComments }) => {
 
@@ -45,6 +46,7 @@ const CommentSection = ({ records, currentUser, comments, setComments }) => {
     <h1>Here's what people are saying....</h1>
       {commentComponentsUser}
       <h1></h1>
+      {/* <CommentForm recordId={records[0].record_id} currentUser={currentUser} setComments={setComments}/> */}
     </div>
   )
 }

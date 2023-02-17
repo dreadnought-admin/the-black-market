@@ -30,8 +30,8 @@ const RecordCard = ({ currentUser, record, handleDeleteRecord, enterRecordEdit }
       <li className="card">
       <Link to={`/records/${id}`}>
         <img onClick={logIdClick} height="75x" width="75px" src={album_cover}></img>
-        <p>{album_name}</p>
-        <p>{artist_name}</p>
+        <p className="album_label">{album_name}</p>
+        <p className="album_label">{artist_name}</p>
         
       </Link>
       </li>

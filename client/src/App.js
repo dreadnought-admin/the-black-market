@@ -182,6 +182,7 @@ const handleDeleteRecord = (deleted) => {
     )
   })
 
+  if (!watches) return  <img className="loading" src="/images/loading.gif"></img>
   
 
   return (

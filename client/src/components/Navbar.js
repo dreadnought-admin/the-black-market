@@ -21,28 +21,33 @@ const Navbar = ({ updateUser, currentUser }) => {
 
   return (
     <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <NavLink to="/records">Records</NavLink>
+      <div className="logoContainer">
+    
+        <img className="siteLogo" src="../images/church.jpg"></img>
+    
+      </div>
+      <NavLink className="navButton" to="/">Home •</NavLink>
+      <NavLink className="navButton" to="/about">About •</NavLink>
+      <NavLink className="navButton" to="/records">Records •</NavLink>
       
       {!currentUser?
-        <NavLink to="/signup">Create Account</NavLink> : null}
+        <NavLink className="navButton" to="/signup">Create Account •</NavLink> : null}
       
       {!currentUser? 
       <NavLink to="/login">Login</NavLink> : null }
 
       {currentUser &&(
-      <NavLink to="/new_sale">Sell a Record</NavLink>)}
+      <NavLink className="navButton" to="/new_sale">Sell a Record • </NavLink>)}
 
       {currentUser && (
-        <NavLink to="/cart">Your Cart</NavLink>
+        <NavLink className="navButton" to="/cart">Your Cart 𖤐</NavLink>
       )}
       
       {currentUser&&(
-        <NavLink to="/profile">Welcome back, {username}</NavLink>
+        <NavLink className="navButton" to="/profile">Welcome back, {username} ✚</NavLink>
       )}
       {currentUser&&(
-        <NavLink onClick={handleLogOut} to="/">Logout</NavLink>
+        <NavLink className="navButton" onClick={handleLogOut} to="/">Logout ☠ </NavLink>
       )}
     </div>
   )

@@ -53,7 +53,7 @@ const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNu
     return (
       <div key={record.id}> 
         <p>{record.album_name}</p>
-        <img src={record.album_cover}></img>
+        <img className="checkout_image" height="150px" width="150px" src={record.album_cover}></img>
         <p>${record.price}</p>
       </div>
     )
@@ -79,7 +79,7 @@ const Checkout = ({ cart, cartTotal, cartNumber, currentUser, setCart, setCartNu
         <Confirmation orderId={orderId} handleClose={handleClose} currentUser={currentUser}/>)  : null 
       }
       <form onSubmit={handlePlaceOrder}>
-        <button type="submit">
+        <button className="button" type="submit">
           Place Order
         </button>
       </form>

@@ -76,7 +76,7 @@ const Signup = ({ updateUser }) => {
                 type="text"
                 name="email"
                 id="email"
-                placeholder="To what email shall we send letters?"
+                placeholder=""
                 onChange={handleChange}
                 />
               </li>

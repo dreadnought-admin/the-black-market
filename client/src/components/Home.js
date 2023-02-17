@@ -1,11 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div>
-      <h1>This is your home page.</h1>
-      <p>There's nothing here quite yet. Honestly, most of this will end up being filler content that just makes the page look nice.</p>
-      <p>There will be featured artists rendnered on top of this, but for the most part, it's just a landing page.</p>
+    <div className="home">
+      <h1>Welcome to the Black Market</h1>
+      <h3>Browse, sell, and discover new darque musik</h3>
+      <div className="iconContainer">
+            <a target="_blank" href="https://www.youtube.com/watch?v=w9DPEkguMqE&ab_channel=kamerarosak">
+                <button className="icon">🧛🏻</button>
+            </a>
+            <a target="_blank" href="https://www.youtube.com/watch?v=fcF8DaOSasY&ab_channel=SpinningTheVinyl101">
+                <button className="icon">🕷</button>
+            </a>
+            <a target="_blank" href="https://www.youtube.com/watch?v=TjvvK-Rj0WI&ab_channel=SiouxsieBansheesVEVO">
+                <button className="icon">🦇</button>
+            </a>
+      </div>
+      <div className="create_or_sign">
+       <h2>New here?</h2> <Link className="navButton" to="/signup">Create an Account</Link> <p>𓆩♱𓆪 Returning Bat?</p> <Link className="navButton" to="/login">Login</Link>
+      </div>
     </div>
   )
 }

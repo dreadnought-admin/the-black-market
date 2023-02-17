@@ -104,8 +104,8 @@ const checkUser = () => {
 
 
 
-if (!user) return <h2>Loading...</h2>
-if (!watches) return <h2>Watching...</h2>
+if (!user) return  <img className="loading" src="/images/loading.gif"></img>
+if (!watches) return  <img className="loading" src="/images/loading.gif"></img>
 
   const handleEditClick = () => {
     enterRecordEdit(id);
@@ -114,41 +114,41 @@ if (!watches) return <h2>Watching...</h2>
 
   return (
     <div>
-    <div>
+    <div className="album_detail_container">
       <p>{genre_id}</p>
-      <img src={album_cover}></img>
-      <p>{album_name}, {artist_name}</p>
-      <p>{condition}</p>
-      <p>{release_date}, {release_description}</p>
-      <p>{record_labels}</p>
-      {spotify_link ? <Spotify link={spotify_link}/> : null }
+      <img height="300px" width="250px" src={album_cover}></img>
+      <h3>{album_name} ✛ {artist_name}</h3>
+      <h3>{condition}</h3>
+      <p>{release_date} ✛ {release_description}</p>
+      <h3>{record_labels}</h3>
+      <div className="spotify">{spotify_link ? <Spotify link={spotify_link}/> : null }</div>
       <p>For sale by: {user.username}</p>
       <p>Sale Price: {price} </p>
       <button className="for_sale" style={{backgroundColor: in_stock ? "pink" : "yellow"}}>In Stock: { in_stock ? "Yes" : "No" }</button>
     </div>
 
-    <div>
+    <div className="comment_section">
       <CommentSection records={records} comments={comments} setComments={setComments} currentUser={currentUser}></CommentSection>
     </div>
-
+    <div className="detail_buttons">
     <div>
       {isFound ? (
-        <button onClick={() => removeCartItem(recordDetail.id)}>
+        <button className="button" onClick={() => removeCartItem(recordDetail.id)}>
           Remove From Cart
       </button>
       ) : (
-        <button onClick={() => addToCart(recordDetail.id)}>
+        <button className="button" onClick={() => addToCart(recordDetail.id)}>
           Add to Cart
         </button>
-      )}
+      )} {currentUser? (
+        <button className="button" onClick={handleWatch}>👀 Watch this</button>
+      ) : null }
     </div>
     <div>
-      {currentUser? (
-        <button onClick={handleWatch}>👀 Watch this</button>
-      ) : null }
-      {currentUser? (
+      {/* {currentUser? (
         <button onClick={handleDeleteWatchClick}>Remove from Watches</button>
-      ) : null }
+      ) : null } */}
+    </div>
     </div>
 
 
@@ -157,8 +157,8 @@ if (!watches) return <h2>Watching...</h2>
       {/* {user.id !== currentUser.id ? null : <button type="button" onClick={submitDelete}>Delete</button>} */}
     </div>
     <div>
-    {user.id !== currentUser.id ? null : <Link to={`/records/${id}/edit`}>Edit This
-    </Link>}
+    <p>{user.id !== currentUser.id ? null : <Link className="button" to={`/records/${id}/edit`}>Edit This
+    </Link>}</p>
     </div>
 
     <div>

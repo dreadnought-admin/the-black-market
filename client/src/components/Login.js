@@ -57,7 +57,7 @@ const Login = ({ updateUser }) => {
       </div>
       
       <div className="signup">
-        <Link className="create_link" to="/signup">Create an Account</Link>
+       <h2>New here? <Link className="create_link" to="/signup">Create an Account</Link></h2> 
       </div>
       
     </div>

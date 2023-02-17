@@ -6,8 +6,9 @@ const Search = ({ setSearch }) => {
 
 
   return (
+    <div className="searchBar"> 
     <div>
-      <label htmlFor='search'>Search</label>
+      <label className="search_label" htmlFor='search'>Search</label>
       <input
       className="input"
       autoComplete="off"
@@ -16,6 +17,7 @@ const Search = ({ setSearch }) => {
       placeholder="Search bar"
       onChange={handleChange}
       />
+    </div>
     </div>
   )
 }

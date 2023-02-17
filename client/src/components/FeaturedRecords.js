@@ -16,14 +16,14 @@ const FeaturedRecords = () => {
     });
   }, []);
 
-  if (!records) return <h2>Loading features...</h2>
+  if (!records) return  <img className="loading" src="/images/loading.gif"></img>
 
   
   
   return (
-    <div>
+    <div className="featured">
       <li className="cards">
-        <h1>Check out this week's features</h1>
+        <div className="featured_container"><h1 className="featured_text">Check out this week's features</h1></div>
       <RecordList records={records}></RecordList>
       </li>
     </div>

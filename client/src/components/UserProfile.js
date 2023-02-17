@@ -14,7 +14,7 @@ const UserProfile = ({ currentUser, watches }) => {
   const { id } = useParams()
 
 
-  const { username, bio,
+  const { username, bio, country,
   email, twitter_handle, instagram_handle, paypal_handle, avatar } = 
   currentUser
 
@@ -46,14 +46,16 @@ const UserProfile = ({ currentUser, watches }) => {
   }, [id])
 
 
-  if (!records) return <h2>Loading features...</h2>
+  if (!records) return  <img className="loading" src="/images/loading.gif"></img>
+  if (!watches) return  <img className="loading" src="/images/loading.gif"></img>
+  if (!user) return  <img className="loading" src="/images/loading.gif"></img>
 
-  if (!user) return <h2>Loading user profile...</h2>
-
+  console.log(user)
+  console.log(currentUser)
 
   return (
     <div>
-      <span><h1>Welcome back, {username}</h1><img src={avatar}></img></span>
+      <span><h1>Welcome back, {username}</h1><img className="avatar" src={avatar}></img></span>
       <span><h3>Your Active Sales:</h3></span>
         <RecordList records={userRecords}/>
       <div>
@@ -61,16 +63,28 @@ const UserProfile = ({ currentUser, watches }) => {
         <RecordList records={watches}/>
       </div>
       <div>
-        Albums You Might Like
+        <p><em>Albums You Might Like</em></p>
         <RecordList records={records}/> 
       </div>
+
       <div>
         <fieldset>
-          <legend>About {currentUser.username}</legend>
+          <legend className="legend_text">About {currentUser.username}</legend>
+          <div>
+            <p><span>Country: {currentUser? (country) : null}</span></p>
+          </div>
           <div>
             {bio}
           </div>
         </fieldset>
+        <div>
+          <div className="user_info">
+            <p>{email? (email) : null}</p>
+            <p>{instagram_handle? (instagram_handle) : null}</p>
+            <p>{twitter_handle? (twitter_handle) : null}</p>
+            <p>{paypal_handle? (paypal_handle) : null}</p>
+          </div>
+        </div>
       </div>
       <div>
       {<Link to={`/users/${user.id}/edit`}>

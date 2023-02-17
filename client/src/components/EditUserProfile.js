@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert'
 
 const EditUserProfile = ({ setCurrentUser }) => {
 
@@ -33,8 +34,24 @@ const EditUserProfile = ({ setCurrentUser }) => {
     setFormData(formdata => ({ ...formData, [name]: value }))
   }
 
+  const submitChange = () => {
+    confirmAlert({
+      title: "Wait!",
+      message: "Are you sure you want to submit these changes? You can't recover your old information.",
+      buttons: [
+        {
+          label: "Yes, I want to PERMANENTLY change my profile!",
+          onClick: () => handleSubmit()
+        },
+        {
+          label: "No, take me back"
+        }
+      ]
+    });
+  }
+
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const updatedProfile = {
       username: formData.username,
       bio: formData.bio,
@@ -68,13 +85,14 @@ const EditUserProfile = ({ setCurrentUser }) => {
         <h3>Edit profile</h3>
       </form>
       <fieldset>
-        <legend>
+        <legend className="legend_text">
           What do you want to change?
         </legend>
         <ul>
           <li>
-            <label htmlFor='username'>Username</label>
+            <label className="form_header"  htmlFor='username'>Username</label>
             <input
+            className="input"
             type="text"
             id="username"
             name="username"
@@ -83,8 +101,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='bio'>Bio</label>
+            <label className="form_header"  htmlFor='bio'>Bio</label>
             <input
+            className="input"
             type="textarea"
             id="bio"
             name="bio"
@@ -93,8 +112,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='country'>country</label>
+            <label  className="form_header" htmlFor='country'>country</label>
             <input
+            className="input"
             type="text"
             id="country"
             name="country"
@@ -103,8 +123,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='email'>Email</label>
+            <label className="form_header"  htmlFor='email'>Email</label>
             <input
+            className="input"
             type="text"
             id="email"
             name="email"
@@ -113,8 +134,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='paypal_handle'>Paypal</label>
+            <label className="form_header"  htmlFor='paypal_handle'>Paypal</label>
             <input
+            className="input"
             type="text"
             id="paypal_handle"
             name="paypal_handle"
@@ -123,8 +145,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='twitter_handle'>Twitter</label>
+            <label className="form_header"  htmlFor='twitter_handle'>Twitter</label>
             <input
+            className="input"
             type="text"
             id="twitter_handle"
             name="twitter_handle"
@@ -133,8 +156,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='instagram_handle'>Instagram</label>
+            <label className="form_header" htmlFor='instagram_handle'>Instagram</label>
             <input
+            className="input"
             type="text"
             id="instagram_handle"
             name="instagram_handle"
@@ -143,8 +167,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='avatar'>Avatar</label>
+            <label className="form_header"  htmlFor='avatar'>Avatar</label>
             <input
+            className="input"
             type="text"
             id="avatar"
             name="avatar"
@@ -153,8 +178,9 @@ const EditUserProfile = ({ setCurrentUser }) => {
             />
           </li>
           <li>
-            <label htmlFor='password'>Password</label>
+            <label className="form_header" htmlFor='password'>Password</label>
             <input
+            className="input"
             type="password"
             id="password"
             name="password"
@@ -164,7 +190,7 @@ const EditUserProfile = ({ setCurrentUser }) => {
           </li>
         </ul>
       </fieldset>
-      <button type="submit" onClick={handleSubmit}>Submit Changes</button>
+      <button className="button" type="submit" onClick={handleSubmit}>Submit Changes</button>
     </div>
   )
 }

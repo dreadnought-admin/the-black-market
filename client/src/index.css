@@ -1,27 +1,280 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Babylonica&family=Bokor&family=Carrois+Gothic+SC&family=Creepster&family=Hina+Mincho&family=Passions+Conflict&family=UnifrakturCook&display=swap');
+
+/* font-family: 'Babylonica', cursive;
+font-family: 'Bokor', cursive;
+font-family: 'Carrois Gothic SC', sans-serif;
+font-family: 'Creepster', cursive;
+font-family: 'Hina Mincho', serif;
+font-family: 'Passions Conflict', cursive;
+font-family: 'UnifrakturCook', cursive; */
+
+:root {
+  --black: #272744;
+  --white: #fbf5ef;
+  --dark-purple: #494d7e;
+  --pink-purple: #8b6d9c;
+  --yellow: #f2d3ab;
+  --pink: #c69fa5;
+  --dark-red: #6A170C;
+  --blood-red: #880808;
+  --true-black: #000000;
+  --manga-white: #f2fbeb;
+
+
+  --bright-red: #ef1a1a;
+  --crimson: #ac1717;
+  --bone-white: #f3d8d8;
+  --soft-black: #1b1a1d;
+  --grey: #353441;
+  --dark-pink: #B18B8B;
+
+  --background: var(--black)
+  --primary: var(--dark-purple)
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background: url('..//public/images/ghost2.png');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  max-width: 1225px;
+  display: grid;
+  font-family: 'VT323', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1 {
+  text-shadow: 1px 1px var(--bone-white);
+  color: var(--black);
+  font-size: 2em;
+}
+
+h2 {
+ text-shadow: 1px 1px var(--dark-pink);
+ color: var(--grey);
+ font-size: 1.75em; 
+}
+
+h3 {
+  text-shadow: 1px 1px var(--dark-pink);
+ color: var(--grey);
+ font-size: 1.75em; 
+}
+
+h4 {
+  text-shadow: 1px .5px var(--pink);
+  color: var(--grey);
+  font-size: 1em;
+}
+
+p {
+  text-shadow: .5px .5px var(--bone-white);
+  color: var(--soft-black);
+  font-size: 1em;
+}
+
+.comment_section {
+  margin-left: 2.5em; 
+}
+
+.comment_avatar {
+  border-radius: 1.5em; 
+}
+
+.detail_buttons {
+  margin-left: 2.5em;
+}
+
+.featured_container {
+  margin-left: 2em; 
+  margin-top: 3em; 
+}
+
+.checkout_image {
+  border-radius: 1em; 
+}
+
+.navButton {
+  color: var(--blood-red);
+  text-shadow: 1px 2px var(--soft-black);
+  font-size: 1.5em;
+  padding-left: 3px; 
+  padding-right: 10px;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  font-family: 'Creepster', cursive;
+  font-size: 1.25em;
+  margin-top: 10px;
+  color: var(--bone-white)
+}
+
+.iconContainer {
+  margin: 0 auto;
+}
+
+.icon {
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  padding-left: 3px;
+  padding-right: 100px;
+  text-decoration: none;
+  text-shadow: 1px 1px var(--black);
+}
+
+.siteLogo {
+  max-width: 250px;
+  max-height: 200px;
+  border-radius: 50px;
+}
+
+.footer {
+    margin-top: 20em;
+    padding-top: 100px;
+    float: bottom;
+    padding-left: 2em;
+}
+
+.home{
+  margin: 0 auto;
+  margin-left: 2em;
+  text-align: center;
+}
+
+.spotify {
+  float: right;
+}
+
+.gothic {
+  float: right;
+}
+
+.featured {
+  float: right;
+  padding-bottom: 2em;
+}
+
+.featured_text {
+  align-content: center;
+  float: right;
+}
+
+.create_or_sign {
+  float: right;
+  margin-bottom: 3em;
+}
+.raven {
+  border-radius: 50%;
 }
 
 .card {
   width: calc(33% - 2rem);
 }
 
+.search_label {
+  text-shadow: 1px 1px var(--dark-pink);
+  color: var(--grey);
+  font-size: 1.75em;
+  margin-right: 1em; 
+}
+.searchbar input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  border: hidden;
+  border-radius: 10px;
+  font-family: 'Cute Font', cursive;
+  font-size: 20px;
+ }
+
+ 
+.searchbox {
+  float: right; 
+  margin-right: 2.5em; 
+}
+
+ .album_detail_container {
+  margin-left: 5em;
+  margin-top: 3em; 
+  margin-bottom: 20em; 
+ }
 .cards {
   list-style: none;
 }
 
 .card {
   margin: 1rem;
+}
+
+.album_label {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none; 
+}
+
+.avatar {
+  border-radius: 40%;
+  max-height: 5em;
+  max-width: 10em;
+  float: left;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-bottom: 2em;
+}
+
+.form_header {
+  margin-right: 1.5em; 
+  font-family:'Bokor', cursive;
+  color: var(--yellow);
+  margin-left: 1em;
+}
+
+.input {
+  font-family: 'Hina Mincho', cursive;
+  font-size: 1em;
+  border: none;
+  border-radius: .2em;
+  width: 15em; 
+  height: 1.5em;
+  margin-bottom: 2em; 
+}
+
+.legend_text {
+  font-size: 20px;
+  color: var(--blood-red);
+}
+
+.user_info > P {
+  color: var(--bone-white);
+}
+
+.login_form {
+  margin-top: 3em;
+  margin-left: 1.5em;
+}
+
+.signup {
+  margin-left: 3em; 
+  margin-top: 10em; 
+}
+
+.signup_container {
+  float: left;
+  margin-top: 5em; 
+  margin-left: 2.5em;
+  width: 15em; 
 }
 
 @media (min-width: 768px) {

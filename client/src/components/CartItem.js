@@ -10,7 +10,7 @@ const CartItem = ({ cartItem, removeCartItem }) => {
       <img height="50px" width="50px" src={album_cover}></img>
       <p>${price}</p>
       <div>
-        <button onClick={() => removeCartItem(cartItem.id)}>
+        <button className="button" onClick={() => removeCartItem(cartItem.id)}>
           Remove from Cart
         </button>
       </div>
