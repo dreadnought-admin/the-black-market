@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to <h2>The Black Market</h2>, a sample e-commerce store dedicated to the sale of traditional goth-genre-aligned records. This app's back end is built wholly on Ruby on Rails and features the gem 'auditor' to help with BE management. The front end is exclusively vanilla React. 
 
-Things you may want to cover:
+This app is currently tethered to its own PostgreSQL database. To access The Black Market, clone this GitHub into a local directory and run the commands `bundle install && rails s` and then run `npm i --prefix client && npm start --prefix client`. 
 
-* Ruby version
+Any additional changes or refactoring done to the initial code are more than welcome. 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Have a good day! 🦇
